@@ -25,7 +25,7 @@
     "rules",
     "assistant"
   ],
-  "author": "Your Name",
+  "author": "ubuntupunk",
   "license": "GPL-3.0",
   "dependencies": {
     "inquirer": "^9.2.12",
@@ -45,12 +45,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/agent-rules-generator.git"
+    "url": "git+https://github.com/ubuntupunk/agent-rules-generator.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/agent-rules-generator/issues"
+    "url": "https://github.com/ubuntupunk/agent-rules-generator/issues"
   },
-  "homepage": "https://github.com/yourusername/agent-rules-generator#readme",
+  "homepage": "https://github.com/ubuntupunk/agent-rules-generator#readme",
   "files": [
     "index.js",
     "lib/",
