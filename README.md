@@ -92,12 +92,42 @@ agent-rules-generator/
 └── templates/             # Template files (empty)
 ```
 
-## 🍳 Recipes
+## 🍳 Recipes & Templates
+
+### Recipes
+Recipes are pre-configured project type definitions that provide default values for generating agent rules files. They contain metadata about technology stacks, coding standards, and project structures for specific types of projects.
 
 The tool includes pre-built recipes for common project setups:
 
 - **React + TypeScript + Vite**: Modern React application with TypeScript, Vite, and Tailwind CSS
 - More recipes coming soon!
+
+### Templates
+Templates are customizable markdown files that serve as the base structure for generated `.agent.md` or `.windsurfrules` files. They allow you to define custom sections and formatting for your AI assistant configuration files.
+
+### Community Contributions
+
+We welcome community contributions for both recipes and templates! If you have a recipe or template that would be useful for others:
+
+1. **For Recipes**: Create a YAML or text file in the `recipes/` directory following the existing format
+2. **For Templates**: Add a markdown file to the `templates/` directory with your custom template structure
+
+#### Recipe Format
+Recipes should include:
+- `name`: Name of the project type
+- `description`: Brief description of the project type
+- `category`: Category (Frontend, Backend, Full Stack, etc.)
+- `tags`: Array of relevant tags
+- `techStack`: Object containing technology details (language, frontend, backend, etc.)
+
+#### Template Format
+Templates are markdown files with placeholders for dynamic content. See existing templates in the `templates/` directory for examples.
+
+#### Submitting Contributions
+1. Fork the repository
+2. Add your recipe or template
+3. Submit a pull request with a clear description of your contribution
+4. Ensure your contribution follows the project's code style and documentation standards
 
 ## 🔧 Configuration
 
@@ -202,7 +232,7 @@ bun run prepare
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License (GPL) - see the [LICENSE](LICENSE) file for details.
 
 ## 🆘 Support
 
