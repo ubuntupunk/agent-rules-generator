@@ -1,0 +1,17 @@
+name: "React + TypeScript + Vite"
+description: "Modern React application with TypeScript, Vite, and Tailwind CSS"
+category: "Frontend"
+tags:
+  - "react"
+  - "typescript"
+  - "vite"
+  - "tailwind"
+  - "frontend"
+
+techStack:
+  language: "TypeScript"
+  frontend: "React 18 with TypeScript"
+  backend: ""
+  database: ""
+  tools: "Vite"
+  testing: "Vitest +

@@ -1,0 +1,62 @@
+{
+  "name": "agent-rules-generator",
+  "version": "1.0.0",
+  "description": "Interactive CLI tool to generate .agent.md and .windsurfrules files for AI-assisted development",
+  "main": "index.js",
+  "bin": {
+    "agent-rules": "./index.js",
+    "generate-agent": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "agent",
+    "ai",
+    "cursor",
+    "windsurf",
+    "development",
+    "cli",
+    "generator",
+    "rules",
+    "assistant"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^9.2.12",
+    "chalk": "^4.1.2",
+    "figlet": "^1.6.0",
+    "js-yaml": "^4.1.0",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.1",
+    "husky": "^8.0.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/agent-rules-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/agent-rules-generator/issues"
+  },
+  "homepage": "https://github.com/yourusername/agent-rules-generator#readme",
+  "files": [
+    "index.js",
+    "lib/",
+    "recipes/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ]
+}
