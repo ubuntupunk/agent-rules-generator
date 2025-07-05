@@ -12,7 +12,8 @@
     "test": "jest",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "publish": "npm publish"
   },
   "keywords": [
     "agent",

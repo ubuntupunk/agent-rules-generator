@@ -280,6 +280,15 @@ The project is ready to run without a build step. For distribution:
 bun run prepare
 ```
 
+## 📡 Deployment
+
+The project is set up with a GitHub Action that automatically deploys and publishes the package to the default npm registry when a new tag is pushed. To trigger deployment:
+
+1. Create a new tag (e.g., `v1.0.0`)
+2. Push the tag to the remote repository: `git push origin v1.0.0`
+
+Ensure you have set up the `NPM_TOKEN` secret in your GitHub repository settings with the necessary npm publish permissions. The GitHub Action will use this token to authenticate with the npm registry.
+
 ## 🤝 Contributing
 
 We welcome contributions to both the main application and the recipe repository. Please follow these guidelines:
