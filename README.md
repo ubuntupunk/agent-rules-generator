@@ -1,3 +1,13 @@
+☕ Support This Work
+
+Found value in these resources?
+
+👉 Buy me a coffee: https://www.buymeacoffee.com/ubuntupunk
+
+If you find value in this project, please consider buying me a coffee to support my work.
+
+That will help me maintain and improve the resources available for free
+
 # Agent Rules Generator
 
 An interactive CLI tool to generate `.agent.md` and `.windsurfrules` files for AI-assisted development with Cursor AI and Windsurf.
@@ -165,7 +175,7 @@ Templates are customizable markdown files that serve as the base structure for g
 
 ### Community Contributions
 
-We welcome community contributions for both recipes and templates! Please see more details in Contributing section. If you have a recipe or template that would be useful for others:
+We welcome community contributions for both recipes and templates! Please see more details in the [Contributing](#contributing) section. If you have a recipe or template that would be useful for others:
 
 1. **For Recipes**: Create a YAML or text file in the `recipes/` directory following the existing format
 2. **For Templates**: Add a markdown file to the `templates/` directory with your custom template structure
@@ -323,4 +333,4 @@ This project is licensed under the GNU General Public License (GPL) - see the [L
 
 ---
 
-Built with ❤️ by ubuntupunk]
+Built with ❤️ by ubuntupunk
