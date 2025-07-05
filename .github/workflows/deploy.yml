@@ -19,6 +19,11 @@ jobs:
       - name: Authenticate with NPM
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+      - name: Bump version
+        run: bun version patch
+        env:
+          NODE_ENV: production
+
       - name: Publish package
         run: npm publish
         env:
