@@ -393,7 +393,7 @@ class AgentRulesGenerator {
 
   async generateAndSave() {
     try {
-      const content = generateAgentFile(this.config);
+      const content = await generateAgentFile(this.config, inquirer); // Pass inquirer instance
       const filename = this.config.fileType === 'agent' ? '.agent.md' : '.windsurfrules';
       
       await fs.writeFile(filename, content);
@@ -419,7 +419,7 @@ class AgentRulesGenerator {
       console.error(chalk.red(`❌ Error generating file: ${error.message}`));
     }
   }
-}
+} 
 
 // CLI entry point
 async function main() {

@@ -1,0 +1,16 @@
+name: React Node MongoDB Stack
+description: A full-stack web application using React for frontend, Node.js/Express for backend, and MongoDB for the database.
+category: Full Stack Web Application
+techStack:
+  frontend: React
+  backend: Node.js/Express
+  database: MongoDB
+  language: JavaScript, TypeScript
+  tools: Webpack, Babel
+  testing: Jest, Cypress
+  deployment: AWS
+tags:
+  - web
+  - full-stack
+  - javascript
+  - mongodb
