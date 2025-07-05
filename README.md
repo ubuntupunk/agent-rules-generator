@@ -165,7 +165,7 @@ Templates are customizable markdown files that serve as the base structure for g
 
 ### Community Contributions
 
-We welcome community contributions for both recipes and templates! If you have a recipe or template that would be useful for others:
+We welcome community contributions for both recipes and templates! Please see more details in Contributing section. If you have a recipe or template that would be useful for others:
 
 1. **For Recipes**: Create a YAML or text file in the `recipes/` directory following the existing format
 2. **For Templates**: Add a markdown file to the `templates/` directory with your custom template structure
@@ -181,11 +181,8 @@ Recipes should include:
 #### Template Format
 Templates are markdown files with placeholders for dynamic content. See existing templates in the `templates/` directory for examples.
 
-#### Submitting Contributions
-1. Fork the repository
-2. Add your recipe or template
-3. Submit a pull request with a clear description of your contribution
-4. Ensure your contribution follows the project's code style and documentation standards
+#### Submitting Recipe Contributions
+Please see more details in Contributing section. You wil need to fork the recipe repository [ubuntupunk/agent-rules-recipes](https://github.com/ubuntupunk/agent-rules-recipes) and submit a pull request.
 
 ## 🔧 Configuration
 
@@ -298,7 +295,7 @@ We welcome contributions to both the main application and the recipe repository.
 - Follow the existing code style and include tests for new features
 - Create a descriptive pull request explaining your changes
 
-### For Recipe Contributions
+### For Community Recipe Contributions
 - Submit all recipe additions and modifications to the recipe repository: [ubuntupunk/agent-rules-recipes](https://github.com/ubuntupunk/agent-rules-recipes)
 - Follow the recipe format and structure
 - Include clear descriptions and relevant metadata for your recipes
@@ -326,4 +323,4 @@ This project is licensed under the GNU General Public License (GPL) - see the [L
 
 ---
 
-Built with ❤️ by [Your Name]
+Built with ❤️ by ubuntupunk]
