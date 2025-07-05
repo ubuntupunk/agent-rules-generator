@@ -94,13 +94,71 @@ agent-rules-generator/
 
 ## 🍳 Recipes & Templates
 
+### Recipe Repository
+
+The tool can fetch recipes from a remote GitHub repository, allowing for easy updates and sharing of project templates. By default, it uses the official recipe repository at [ubuntupunk/agent-rules-recipes](https://github.com/ubuntupunk/agent-rules-recipes).
+
+#### Repository Structure
+```
+agent-rules-recipes/
+├── recipes/           # Recipe files (.yaml)
+└── templates/         # Template files referenced by recipes
+```
+
+#### Using a Custom Recipe Repository
+You can configure a custom repository by running:
+```bash
+bun run start
+```
+Then select "Configure remote repository" and enter your GitHub repository in the format `owner/repo`.
+
+### API Integration
+
+The tool uses the GitHub API to fetch recipes and templates. For optimal performance and to avoid rate limiting, it's recommended to set up a GitHub Personal Access Token.
+
+#### Setting Up GitHub Authentication
+1. Create a Personal Access Token:
+   - Go to GitHub → Settings → Developer Settings → Personal Access Tokens → Generate new token
+   - Select the `public_repo` scope (or `repo` for private repositories)
+   - Copy the generated token
+
+2. Configure the token:
+   ```bash
+   # Temporary (current session only)
+   export GITHUB_TOKEN=your_token_here
+   
+   # Or add to your shell profile (~/.bashrc, ~/.zshrc, etc.)
+   echo 'export GITHUB_TOKEN=your_token_here' >> ~/.bashrc
+   source ~/.bashrc
+   ```
+
+#### Rate Limits
+- **Unauthenticated**: 60 requests per hour
+- **Authenticated**: 5,000 requests per hour
+
+The tool will show your current rate limit status during operations.
+
 ### Recipes
 Recipes are pre-configured project type definitions that provide default values for generating agent rules files. They contain metadata about technology stacks, coding standards, and project structures for specific types of projects.
 
-The tool includes pre-built recipes for common project setups:
-
-- **React + TypeScript + Vite**: Modern React application with TypeScript, Vite, and Tailwind CSS
-- More recipes coming soon!
+#### Creating Custom Recipes
+1. Create a new YAML file in the `recipes` directory of your repository
+2. Follow this structure:
+   ```yaml
+   name: "Project Type Name"
+   description: "Description of the project type"
+   technologies:
+     - "Technology 1"
+     - "Technology 2"
+   rules:
+     - "Rule 1"
+     - "Rule 2"
+   templates:
+     - source: "templates/filename.template"
+       target: "{{project_name}}/path/to/output"
+   ```
+3. Commit and push to your repository
+4. The tool will automatically detect new recipes on the next sync
 
 ### Templates
 Templates are customizable markdown files that serve as the base structure for generated `.agent.md` or `.windsurfrules` files. They allow you to define custom sections and formatting for your AI assistant configuration files.
@@ -224,30 +282,39 @@ bun run prepare
 
 ## 🤝 Contributing
 
+We welcome contributions to both the main application and the recipe repository. Please follow these guidelines:
+
+### For Code Contributions (Main Repository)
+- Submit all code improvements, bug fixes, and new features to the main repository: [ubuntupunk/agent-rules-generator](https://github.com/ubuntupunk/agent-rules-generator)
+- Follow the existing code style and include tests for new features
+- Create a descriptive pull request explaining your changes
+
+### For Recipe Contributions
+- Submit all recipe additions and modifications to the recipe repository: [ubuntupunk/agent-rules-recipes](https://github.com/ubuntupunk/agent-rules-recipes)
+- Follow the recipe format and structure
+- Include clear descriptions and relevant metadata for your recipes
+
+### Development Setup
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+### Issues
+- For bugs and feature requests, please use the [GitHub Issues](https://github.com/ubuntupunk/agent-rules-generator/issues) in the appropriate repository
+- Clearly describe the issue or feature request
+- Include steps to reproduce for bugs
+
 ## 📄 License
 
 This project is licensed under the GNU General Public License (GPL) - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support
+## 🙏 Acknowledgments
 
-If you encounter any issues or have questions:
-
-1. Check the [Issues](https://github.com/yourusername/agent-rules-generator/issues) page
-2. Create a new issue if your problem isn't already reported
-3. Provide detailed information about your environment and the issue
-
-## 🔗 Related Tools
-
-- [Cursor AI](https://cursor.sh/) - AI-powered code editor
-- [Windsurf](https://codeium.com/windsurf) - AI development environment
-- [Bun](https://bun.sh/) - Fast all-in-one JavaScript runtime
+- Thanks to all contributors who help improve this tool
+- Inspired by the need for better AI-assisted development workflows
 
 ---
 
-Made with ❤️ for the AI-assisted development community
+Built with ❤️ by [Your Name]

@@ -6,7 +6,16 @@ const path = require('path');
 const chalk = require('chalk');
 const figlet = require('figlet');
 const { generateAgentFile } = require('./lib/generator_lib');
-const { loadRecipes, searchRecipes, refreshRecipes, clearCache, getCacheInfo, updateRemoteConfig } = require('./lib/recipes_lib');
+const { 
+  loadRecipes, 
+  searchRecipes, 
+  refreshRecipes, 
+  clearCache, 
+  getCacheInfo, 
+  updateRemoteConfig, 
+  testRepositoryConnection,
+  REMOTE_RECIPES_CONFIG  
+} = require('./lib/recipes_lib');
 
 class AgentRulesGenerator {
   constructor() {
@@ -218,15 +227,25 @@ class AgentRulesGenerator {
   }
 
   async configureRemoteRepository() {
-    console.log(chalk.blue('\n🔧 Configure Remote Repository'));
-    console.log(chalk.gray('Configure the remote repository for community recipes\n'));
-
+    console.log(chalk.blue('\n⚙️  Configure Remote Repository'));
+    
+    // Initialize with default values if REMOTE_RECIPES_CONFIG is not available
+    const defaultConfig = {
+      githubApiUrl: 'https://api.github.com/repos/ubuntupunk/${githubRepo}/recipes',
+      githubRawUrl: 'https://raw.githubusercontent.com/ubuntupunk/${githubRepo}/main/recipes',
+      cacheExpiration: 24 * 60 * 60 * 1000 // 24 hours
+    };
+    
+    const currentConfig = REMOTE_RECIPES_CONFIG || defaultConfig;
+    
     const { githubRepo, cacheExpiration } = await inquirer.prompt([
       {
         type: 'input',
         name: 'githubRepo',
         message: 'GitHub repository (owner/repo):',
-        default: 'your-username/agent-rules-recipes',
+        default: currentConfig.githubApiUrl
+          ? currentConfig.githubApiUrl.split('/').slice(-3, -1).join('/')
+          : '',
         validate: input => {
           if (!input.includes('/')) {
             return 'Please enter in format: owner/repo';
@@ -243,7 +262,10 @@ class AgentRulesGenerator {
           { name: '6 hours', value: 6 },
           { name: '24 hours (default)', value: 24 },
           { name: '1 week', value: 168 }
-        ]
+        ],
+        default: currentConfig.cacheExpiration 
+          ? Math.floor(currentConfig.cacheExpiration / (60 * 60 * 1000))
+          : 24
       }
     ]);
 
@@ -270,15 +292,102 @@ class AgentRulesGenerator {
     ]);
 
     if (testConnection) {
-      console.log(chalk.blue('\n🔄 Testing connection...'));
-      try {
-        const recipes = await refreshRecipes();
-        const count = Object.keys(recipes).length;
-        console.log(chalk.green(`✅ Successfully connected! Found ${count} recipes`));
-      } catch (error) {
-        console.error(chalk.red(`❌ Connection failed: ${error.message}`));
-      }
+      await this.testRepositoryConnection();
     }
+  }
+
+  /**
+   * Tests the connection to the configured repository and displays results
+   */
+  async testRepositoryConnection() {
+    console.log(chalk.blue('\n🔍 Testing repository connection...'));
+    
+    try {
+      const results = await testRepositoryConnection();
+      
+      // Display test results
+      console.log('\n' + chalk.underline('Connection Test Results'));
+      console.log(chalk.gray('─'.repeat(50)));
+      
+      // API Endpoint status
+      const apiStatus = results.tests.apiReachable.success ? '✅' : '❌';
+      console.log(`${apiStatus} API Endpoint: ${results.apiEndpoint}`);
+      if (!results.tests.apiReachable.success) {
+        console.log(`   ${chalk.red('Error:')} ${results.tests.apiReachable.error}`);
+      } else {
+        console.log(`   Status: ${chalk.green('Reachable')} (${results.tests.apiReachable.duration}ms)`);
+      }
+      
+      // Raw Endpoint status
+      const rawStatus = results.tests.rawReachable.success ? '✅' : '❌';
+      console.log(`\n${rawStatus} Raw Content Endpoint: ${results.rawEndpoint}`);
+      if (!results.tests.rawReachable.success) {
+        console.log(`   ${chalk.red('Error:')} ${results.tests.rawReachable.error}`);
+      } else {
+        console.log(`   Status: ${chalk.green('Reachable')} (${results.tests.rawReachable.duration}ms)`);
+      }
+      
+      // Rate Limit status
+      if (results.rateLimit) {
+        const rate = results.rateLimit;
+        const rateLimitText = [
+          '\n' + chalk.blue('GitHub API Rate Limits:'),
+          `   ${chalk.gray('Limit:')}    ${rate.limit || 'Unknown'} requests`,
+          `   ${chalk.gray('Remaining:')} ${rate.remaining || 0} requests`,
+          `   ${chalk.gray('Used:')}      ${rate.used || 0} requests`,
+          `   ${chalk.gray('Resets at:')} ${rate.reset || 'Unknown'}`,
+          `   ${chalk.gray('Status:')}    ${rate.remaining > 0 ? chalk.green('OK') : chalk.red('Rate Limited')}`,
+          `   ${chalk.gray('Auth:')}      ${rate.authenticated ? chalk.green('Using GitHub Token') : chalk.yellow('Unauthenticated')}`
+        ].join('\n');
+        console.log(rateLimitText);
+      }
+      
+      // Recipe list status
+      if (results.tests.fetchRecipeList) {
+        const listStatus = results.tests.fetchRecipeList.success ? '✅' : '❌';
+        console.log(`\n${listStatus} Recipe List:`);
+        if (results.tests.fetchRecipeList.success) {
+          console.log(`   Found ${chalk.cyan(results.tests.fetchRecipeList.fileCount)} recipe files`);
+          console.log(`   Fetched in ${results.tests.fetchRecipeList.duration}ms`);
+          
+          // Download test status if available
+          if (results.tests.downloadTest) {
+            const dlStatus = results.tests.downloadTest.success ? '✅' : '❌';
+            console.log(`\n${dlStatus} Download Test:`);
+            if (results.tests.downloadTest.success) {
+              console.log(`   Successfully downloaded: ${chalk.cyan(results.tests.downloadTest.file)}`);
+              console.log(`   File size: ${Math.round(results.tests.downloadTest.size / 1024)} KB`);
+            } else {
+              console.log(`   Failed to download: ${chalk.red(results.tests.downloadTest.file)}`);
+              console.log(`   Error: ${chalk.red(results.tests.downloadTest.error)}`);
+            }
+          }
+        } else {
+          console.log(`   ${chalk.red('Error:')} ${results.tests.fetchRecipeList.error}`);
+        }
+      }
+      
+      // Summary
+      console.log('\n' + chalk.gray('─'.repeat(50)));
+      if (results.success) {
+        console.log(chalk.green.bold('✅ Connection test completed successfully!'));
+      } else {
+        console.log(chalk.yellow.bold('⚠️  Connection test completed with issues'));
+      }
+      
+    } catch (error) {
+      console.error(chalk.red(`\n❌ Error testing repository connection: ${error.message}`));
+    }
+    
+    // Wait for user to press enter
+    await inquirer.prompt([
+      {
+        type: 'input',
+        name: 'continue',
+        message: '\nPress Enter to continue...',
+        prefix: ''
+      }
+    ]);
   }
 
   async collectProjectInfo() {
