@@ -30,29 +30,37 @@ class AgentRulesGenerator {
       return await this.handleCliCommands(args);
     }
 
-    const { action } = await inquirer.prompt([
-      {
-        type: 'list',
-        name: 'action',
-        message: 'What would you like to do?',
-        choices: [
-          { name: 'Generate agent rules file', value: 'generate' },
-          { name: 'Manage recipes', value: 'recipes' },
-          { name: 'Configure remote repository', value: 'configure' }
-        ]
-      }
-    ]);
+    let shouldExit = false;
+    while (!shouldExit) {
+      const { action } = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'action',
+          message: 'What would you like to do?',
+          choices: [
+            { name: 'Generate agent rules file', value: 'generate' },
+            { name: 'Manage recipes', value: 'recipes' },
+            { name: 'Configure remote repository', value: 'configure' },
+            { name: 'Exit', value: 'exit' }
+          ]
+        }
+      ]);
 
-    switch (action) {
-      case 'generate':
-        await this.generateAgentRules();
-        break;
-      case 'recipes':
-        await this.manageRecipes();
-        break;
-      case 'configure':
-        await this.configureRemoteRepository();
-        break;
+      switch (action) {
+        case 'generate':
+          await this.generateAgentRules();
+          break;
+        case 'recipes':
+          await this.manageRecipes();
+          break;
+        case 'configure':
+          await this.configureRemoteRepository();
+          break;
+        case 'exit':
+          shouldExit = true;
+          console.log(chalk.green('👋 Goodbye!'));
+          break;
+      }
     }
   }
 
