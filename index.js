@@ -5,8 +5,8 @@
  * This file serves as the main executable for the npm package
  */
 
-// const { AgentRulesGenerator } = require('./agent_rules_cli.js');
-const { AgentRulesGenerator } = require('./enhanced_cli.js');
+const { AgentRulesGenerator } = require('./agent_rules_cli.js');
+
 // Create and initialize the generator
 const generator = new AgentRulesGenerator();
 
