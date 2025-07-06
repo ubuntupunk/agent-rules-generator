@@ -1,11 +1,11 @@
 {
   "name": "agent-rules-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Interactive CLI tool to generate .agent.md and .windsurfrules files for AI-assisted development",
   "main": "index.js",
   "bin": {
-    "agent-rules": "./index.js",
-    "generate-agent": "./index.js"
+    "agent-rules-generator": "index.js",
+    "generate-agent-rules": "index.js"
   },
   "scripts": {
     "start": "node index.js",
@@ -13,7 +13,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepare": "husky install",
-    "publish": "bun publish",
+    "build": "echo 'No build step required'",
     "version:patch": "bun version patch && git push --follow-tags",
     "version:minor": "bun version minor && git push --follow-tags",
     "version:major": "bun version major && git push --follow-tags",
