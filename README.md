@@ -16,7 +16,10 @@ An interactive CLI tool to generate `.agent.md` and `.windsurfrules` files for A
 
 - **Interactive CLI**: Guided setup process for creating AI assistant configuration files
 - **Multiple AI Platforms**: Support for both Cursor AI (`.agent.md`) and Windsurf (`.windsurfrules`)
-- **Recipe System**: Pre-built templates for common project types (React, TypeScript, etc.)
+- **Project Type Inclusivity**: Supports 6 project types with tailored question flows
+- **Recipe System**: Pre-built templates for common project types and technology stacks
+- **Conditional Tech Stack**: Only asks relevant questions based on your project type
+- **Enhanced Technology Support**: 20+ technology-specific guidelines and best practices
 - **Project Structure Analysis**: Automatically detects and configures based on your project setup
 - **Customizable Rules**: Define coding standards, workflow guidelines, and project-specific instructions
 

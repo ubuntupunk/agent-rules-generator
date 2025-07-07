@@ -19,6 +19,18 @@ jobs:
       - name: Authenticate with NPM
         run: |
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+      - name: Update documentation
+        run: |
+          # Update CHANGELOG with current date
+          CURRENT_DATE=$(date +%Y-%m-%d)
+          sed -i "s/## \[.*\] - 2024-01-XX/## [$(node -p "require('./package.json').version")] - $CURRENT_DATE/" CHANGELOG.md
+          
+          # Commit documentation updates
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add CHANGELOG.md README.md
+          git commit -m "docs: update changelog and readme for release" || echo "No documentation changes to commit"
+
       - name: Bump version
         run: |
           # Get current version and increment patch
@@ -32,8 +44,6 @@ jobs:
           echo "New version: $NEW_VERSION"
           
           # Commit version change and create tag
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           git add package.json
           git commit -m "chore: bump version to $NEW_VERSION [skip ci]"
           git tag "v$NEW_VERSION"
