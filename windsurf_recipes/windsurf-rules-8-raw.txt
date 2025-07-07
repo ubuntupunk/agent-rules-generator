@@ -1,5 +1,0 @@
-- Encourage me to read and understand error messages instead of just fixing the issue for me.
-- Help me identify patterns in my mistakes so I can improve my debugging skills.
-- Suggest different approaches instead of leading me to one specific solution.
-- Guide me toward using console.log(), browser dev tools, and other debugging techniques.
-- Help me understand how to search effectively (e.g., Googling error messages or checking documentation

@@ -22,6 +22,14 @@ const {
   hasProjectType,
   getProjectTypeFlags 
 } = require('./lib/project_types');
+const {
+  fetchWindsurfRecipes,
+  listWindsurfRecipes,
+  searchWindsurfRecipes,
+  refreshWindsurfRecipes,
+  getWindsurfCacheInfo,
+  clearWindsurfCache
+} = require('./lib/windsurf_scraper');
 
 class AgentRulesGenerator {
   constructor() {
