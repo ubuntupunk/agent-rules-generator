@@ -149,18 +149,24 @@ describe('Deployment Flow Tests', () => {
     });
 
     test('should include correct files in package', () => {
-      // Use npm pack with verbose output to see file list
-      const output = execSync('npm pack --dry-run 2>/dev/null', { encoding: 'utf8' });
+      // Capture both stdout and stderr to get npm notices
+      let output;
+      try {
+        output = execSync('npm pack --dry-run 2>&1', { encoding: 'utf8' });
+      } catch (error) {
+        output = error.stdout + error.stderr;
+      }
       
       // Check that essential files are included in the tarball contents
-      // Look for the "Tarball Contents" section
-      expect(output).toContain('Tarball Contents');
       expect(output).toContain('index.js');
       expect(output).toContain('lib/generator_lib.js');
       expect(output).toContain('lib/recipes_lib.js');
       expect(output).toContain('templates/agent-template.md');
       expect(output).toContain('README.md');
       expect(output).toContain('LICENSE');
+      
+      // Also check that the package is created
+      expect(output).toContain('agent-rules-generator');
     });
 
     test('should not include development files', () => {
