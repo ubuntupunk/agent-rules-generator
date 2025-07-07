@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2024-01-15
+
+### 📚 Documentation
+- **Complete README restructure**: Contributing section moved to top, clear installation methods
+- **CHANGELOG.md added**: Comprehensive version history following Keep a Changelog format
+- **Installation clarity**: npm positioned as preferred method, development vs normal use distinction
+- **Professional structure**: Following open source best practices
+
+### 🧪 Testing & Organization
+- **Test file organization**: All tests moved to test/ directory with proper naming
+- **Cleanup**: Removed temporary and debug test files from root
+- **Import path fixes**: Corrected relative imports in moved test files
+- **Maintained coverage**: 90 tests passing across 5 test suites
+
+### 🔧 Technical Improvements
+- **Enhanced deployment workflow**: Documentation updates included in CI/CD
+- **Package structure**: CHANGELOG included in npm package files
+- **Better project organization**: Clean root directory, professional structure
+- **Syntax fixes**: Resolved package.json trailing comma issue
+
+### 🎯 Benefits
+- **Better developer experience**: Clear paths for users vs contributors
+- **Professional appearance**: Follows OSS standards and best practices
+- **Improved maintainability**: Organized test structure and clean codebase
+- **Enhanced documentation**: Comprehensive guides and clear instructions
+
 ## [1.1.0] - 2024-01-15
 
 ### 🚀 Added
