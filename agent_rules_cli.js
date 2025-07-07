@@ -16,6 +16,12 @@ const {
   testRepositoryConnection,
   REMOTE_RECIPES_CONFIG  
 } = require('./lib/recipes_lib');
+const { 
+  getProjectTypeQuestions, 
+  analyzeProjectTypes, 
+  hasProjectType,
+  getProjectTypeFlags 
+} = require('./lib/project_types');
 
 class AgentRulesGenerator {
   constructor() {
@@ -549,94 +555,25 @@ class AgentRulesGenerator {
   }
 
   async manualTechStackSetup() {
-    const techStack = await inquirer.prompt([
-      {
-        type: 'input',
-        name: 'frontend',
-        message: 'Frontend framework/library (e.g., React, Vue, Angular):'
-      },
-      {
-        type: 'input',
-        name: 'backend',
-        message: 'Backend framework (e.g., Node.js/Express, Django, Rails):'
-      },
-      {
-        type: 'input',
-        name: 'database',
-        message: 'Database (e.g., PostgreSQL, MongoDB, MySQL):'
-      },
-      {
-        type: 'input',
-        name: 'language',
-        message: 'Primary programming language(s):'
-      },
-      {
-        type: 'input',
-        name: 'tools',
-        message: 'Build tools/bundlers (e.g., Webpack, Vite, Parcel):'
-      },
-      {
-        type: 'input',
-        name: 'testing',
-        message: 'Testing framework (e.g., Jest, Vitest, Cypress):'
-      },
-      {
-        type: 'input',
-        name: 'deployment',
-        message: 'Deployment platform (e.g., Vercel, Netlify, AWS):'
-      }
-    ]);
+    // Get project type specific questions
+    const questions = getProjectTypeQuestions(this.config.overview.projectType);
+    const techStack = await inquirer.prompt(questions);
 
     this.config.technologyStack = techStack;
   }
 
   async customizeTechStack() {
      const current = this.config.technologyStack;
-     const customized = await inquirer.prompt([
-       {
-         type: 'input',
-         name: 'frontend',
-         message: 'Frontend:',
-         default: current.frontend
-       },
-       {
-         type: 'input',
-         name: 'backend',
-         message: 'Backend:',
-         default: current.backend
-       },
-       {
-         type: 'input',
-         name: 'database',
-         message: 'Database:',
-         default: current.database
-       },
-       {
-         type: 'input',
-         name: 'language',
-         message: 'Language:',
-         default: current.language
-       },
-       {
-         type: 'input',
-         name: 'tools',
-         message: 'Build tools:',
-         default: current.tools
-       },
-       {
-         type: 'input',
-         name: 'testing',
-         message: 'Testing:',
-         default: current.testing
-       },
-       {
-         type: 'input',
-         name: 'deployment',
-         message: 'Deployment:',
-         default: current.deployment
+     const questions = getProjectTypeQuestions(this.config.overview.projectType);
+     
+     // Set defaults from current values
+     questions.forEach(question => {
+       if (current[question.name]) {
+         question.default = current[question.name];
        }
-     ]);
- 
+     });
+     
+     const customized = await inquirer.prompt(questions);
      this.config.technologyStack = customized;
    }
  
