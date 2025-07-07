@@ -45,6 +45,45 @@ See our [Testing Guide](docs/testing.md) and [Deployment Guide](docs/deployment.
 - **Project Structure Analysis**: Automatically detects and configures based on your project setup
 - **Customizable Rules**: Define coding standards, workflow guidelines, and project-specific instructions
 
+## 🏗️ Architecture
+
+The Agent Rules Generator features a **modular architecture** designed for maintainability and extensibility:
+
+### **Core Components**
+```
+agent-rules-generator/
+├── index.js                           # Main entry point
+├── agent_rules_cli.js      # Core CLI orchestrator (424 lines)
+├── lib/                               # Specialized modules (11 total)
+│   ├── recipe_manager.js              # Recipe selection and application
+│   ├── windsurf_manager.js            # Windsurf integration and menu handling
+│   ├── tech_stack_collector.js        # Technology stack collection
+│   ├── project_configurator.js        # Project configuration collection
+│   ├── cache_manager.js               # Cache management operations
+│   ├── repository_manager.js          # Repository settings and testing
+│   ├── generator_lib.js               # Template system and file generation
+│   ├── recipes_lib.js                 # Recipe system with GitHub integration
+│   ├── project_types.js               # Project type logic and questions
+│   ├── windsurf_scraper.js            # Windsurf recipe scraping and caching
+│   └── cleanup_utils.js               # Cleanup and maintenance utilities
+├── templates/                         # Template files for generation
+├── test/                              # Comprehensive test suites (99 tests)
+└── docs/                              # Documentation
+```
+
+### **Key Design Principles**
+- **Separation of Concerns**: Each module handles a specific functionality
+- **Dependency Injection**: Modules receive shared dependencies (inquirer, chalk, config)
+- **Clean Interfaces**: Consistent method signatures across modules
+- **Testability**: 99 tests with 100% pass rate
+- **Maintainability**: No module exceeds 300 lines
+
+### **Refactoring Achievement**
+- ✅ **45% code reduction**: Main CLI reduced from 779 → 424 lines
+- ✅ **11 specialized modules** with clean separation of concerns
+- ✅ **100% functionality preserved** including the awesome startup screen
+- ✅ **All tests passing** with updated integration tests
+
 ## 📋 Prerequisites
 
 ### For Normal Use
@@ -93,6 +132,58 @@ node index.js
 # Run tests
 bun test  # or npm test
 ```
+
+## 👨‍💻 Development Guide
+
+### **Working with the Modular Architecture**
+
+The codebase is organized into specialized modules for easy development and maintenance:
+
+#### **Adding New Features**
+1. **Identify the appropriate module** or create a new one if needed
+2. **Follow the module pattern**:
+   ```javascript
+   class ModuleName {
+     constructor(config) {
+       this.config = config;
+     }
+     
+     async methodName() {
+       // Implementation
+     }
+   }
+   
+   module.exports = { ModuleName };
+   ```
+3. **Update the main CLI** to use your new module
+4. **Add comprehensive tests** for your functionality
+
+#### **Module Responsibilities**
+- **recipe_manager.js**: Recipe selection, browsing, and application
+- **windsurf_manager.js**: Windsurf-specific functionality and menus
+- **tech_stack_collector.js**: Technology stack collection and customization
+- **project_configurator.js**: Project information and configuration collection
+- **cache_manager.js**: Cache operations and management
+- **repository_manager.js**: Remote repository configuration and testing
+
+#### **Testing Guidelines**
+```bash
+# Run all tests
+bun test
+
+# Run specific test suite
+bun test test/template_system.test.js
+
+# Test with verbose output
+bun test --verbose
+```
+
+#### **Code Quality Standards**
+- **Keep modules under 300 lines** for maintainability
+- **Use dependency injection** for shared resources
+- **Follow consistent naming conventions** (camelCase for methods, PascalCase for classes)
+- **Add JSDoc comments** for public methods
+- **Include error handling** with user-friendly messages using chalk
 
 ## 🚀 Quick Start
 

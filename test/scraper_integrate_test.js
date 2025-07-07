@@ -62,7 +62,7 @@ async function testScraperIntegration() {
     // Test 3: Check CLI menu option
     console.log('\n📋 Test 3: CLI Menu Options');
     try {
-      const cliContent = await fs.readFile('agent_rules_cli.js', 'utf8');
+      const cliContent = await fs.readFile('agent_rules_cli_refactored.js', 'utf8');
       results.cliMenuOption = cliContent.includes('Windsurf recipes');
       console.log(`   ${results.cliMenuOption ? '✅' : '❌'} Menu option: ${results.cliMenuOption ? 'Present' : 'Missing'}`);
     } catch (error) {
@@ -72,25 +72,17 @@ async function testScraperIntegration() {
     // Test 4: Check CLI handler methods
     console.log('\n📋 Test 4: CLI Handler Methods');
     try {
-      const cliContent = await fs.readFile('agent_rules_cli.js', 'utf8');
-      const handlerMethods = [
-        'handleWindsurfRecipes',
-        'browseWindsurfRecipes',
-        'applyWindsurfRecipe'
-      ];
+      const cliContent = await fs.readFile('agent_rules_cli_refactored.js', 'utf8');
+      // Check if setupTechnologyStack method includes Windsurf recipes option
+      const hasWindsurfOption = cliContent.includes('Windsurf recipes');
+      const hasRecipeManagerCall = cliContent.includes('recipeManager.handleWindsurfRecipes');
       
-      const presentMethods = handlerMethods.filter(method => 
-        cliContent.includes(`async ${method}(`)
-      );
-      
-      results.cliHandlers = presentMethods.length === handlerMethods.length;
-      console.log(`   ${results.cliHandlers ? '✅' : '❌'} Handler methods: ${presentMethods.length}/${handlerMethods.length} present`);
+      results.cliHandlers = hasWindsurfOption && hasRecipeManagerCall;
+      console.log(`   ${results.cliHandlers ? '✅' : '❌'} Handler methods: ${results.cliHandlers ? 'Present in modular structure' : 'Missing'}`);
       
       if (!results.cliHandlers) {
-        const missingMethods = handlerMethods.filter(method => 
-          !cliContent.includes(`async ${method}(`)
-        );
-        console.log(`   Missing: ${missingMethods.join(', ')}`);
+        if (!hasWindsurfOption) console.log('   Missing: "Windsurf recipes" menu option');
+        if (!hasRecipeManagerCall) console.log('   Missing: recipeManager.handleWindsurfRecipes call');
       }
       
     } catch (error) {
@@ -100,9 +92,9 @@ async function testScraperIntegration() {
     // Test 5: Check CLI routing
     console.log('\n📋 Test 5: CLI Menu Routing');
     try {
-      const cliContent = await fs.readFile('agent_rules_cli.js', 'utf8');
-      results.cliRouting = cliContent.includes("choice === 'Windsurf recipes'") &&
-                          cliContent.includes('handleWindsurfRecipes');
+      const cliContent = await fs.readFile('agent_rules_cli_refactored.js', 'utf8');
+      results.cliRouting = cliContent.includes("case 'Windsurf recipes'") &&
+                          cliContent.includes('recipeManager.handleWindsurfRecipes()');
       console.log(`   ${results.cliRouting ? '✅' : '❌'} Menu routing: ${results.cliRouting ? 'Present' : 'Missing'}`);
     } catch (error) {
       console.log(`   ❌ Routing check error: ${error.message}`);
@@ -111,11 +103,18 @@ async function testScraperIntegration() {
     // Test 6: Test actual CLI functionality
     console.log('\n📋 Test 6: CLI Class Functionality');
     try {
-      const { AgentRulesGenerator } = require('./agent_rules_cli.js');
+      const { AgentRulesGenerator } = require('./agent_rules_cli_refactored.js');
       const generator = new AgentRulesGenerator();
       
-      const hasWindsurfMethods = typeof generator.handleWindsurfRecipes === 'function';
-      console.log(`   ${hasWindsurfMethods ? '✅' : '❌'} CLI methods: ${hasWindsurfMethods ? 'Available' : 'Missing'}`);
+      // Check if the refactored structure has the recipe manager with Windsurf support
+      const hasRecipeManager = generator.recipeManager && typeof generator.recipeManager.handleWindsurfRecipes === 'function';
+      results.cliHandlers = hasRecipeManager;
+      
+      console.log(`   ${hasRecipeManager ? '✅' : '❌'} CLI methods: ${hasRecipeManager ? 'Present in recipeManager' : 'Missing'}`);
+      
+      if (!hasRecipeManager) {
+        console.log('   Missing: recipeManager.handleWindsurfRecipes method');
+      }
       
     } catch (error) {
       console.log(`   ❌ CLI class error: ${error.message}`);

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-07T13:06:40.559Z",
+  "timestamp": "2025-07-07T20:01:22.135Z",
   "recipes": {
     "windsurf-1": {
       "name": "React Project Rules 1",
@@ -18,7 +18,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.129Z",
         "index": 1
       },
       "windsurfRules": "# General Code Style & Formatting\n- Follow the Airbnb Style Guide for code formatting.\n- Use PascalCase for React component file names (e.g., UserCard.tsx, not user-card.tsx).\n- Prefer named exports for components.\n\n# Project Structure & Architecture\n- Follow Next.js patterns and use the App Router.\n- Correctly determine when to use server vs. client components in Next.js.\n\n# Styling & UI\n- Use Tailwind CSS for styling.\n- Use Shadcn UI for components.\n\n# Data Fetching & Forms\n- Use TanStack Query (react-query) for frontend data fetching.\n- Use React Hook Form for form handling.\n- Use Zod for validation.\n\n# State Management & Logic\n- Use React Context for state management.\n\n# Backend & Database\nUse Prisma for database access."
@@ -40,7 +40,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.130Z",
         "index": 2
       },
       "windsurfRules": "# General Code Style & Formatting\n- Use functional and declarative programming patterns; avoid classes.\n- Prefer iteration and modularization over code duplication.\n- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).\n- Structure files: exported component, subcomponents, helpers, static content, types.\n- Follow Expo's official documentation for setting up and configuring projects.\n\n# Naming Conventions\n- Use lowercase with dashes for directories (e.g., components/auth-wizard).\n- Favor named exports for components.\n\n# TypeScript Best Practices\n- Use TypeScript for all code; prefer interfaces over types.\n- Avoid any and enums; use explicit types and maps instead.\n- Use functional components with TypeScript interfaces.\n- Enable strict mode in TypeScript for better type safety.\n\n# Syntax & Formatting\n- Use the function keyword for pure functions.\n- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.\n- Use declarative JSX.\n- Use Prettier for consistent code formatting.\n\n# Styling & UI\n- Use Expo's built-in components for common UI patterns and layouts.\n- Implement responsive design with Flexbox and useWindowDimensions.\n- Use styled-components or Tailwind CSS for styling.\n- Implement dark mode support using Expo's useColorScheme.\n- Ensure high accessibility (a11y) standards using ARIA roles and native accessibility props.\n- Use react-native-reanimated and react-native-gesture-handler for performant animations and gestures."
@@ -60,7 +60,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.130Z",
         "index": 3
       },
       "windsurfRules": "# General Code Style & Formatting\n- Use English for all code and documentation.\n- Always declare the type of each variable and function (parameters and return value).\n- Avoid using any.\n- Create necessary types.\n- Use JSDoc to document public classes and methods.\n- Don't leave blank lines within a function.\n- One export per file.\n\n# Naming Conventions\n- Use PascalCase for classes.\n- Use camelCase for variables, functions, and methods.\n- Use kebab-case for file and directory names.\n- Use UPPERCASE for environment variables.\n- Avoid magic numbers and define constants.\n\n# Functions & Logic\n- Keep functions short and single-purpose (<20 lines).\n- Avoid deeply nested blocks by:\n- Using early returns.\n- Extracting logic into utility functions.\n- Use higher-order functions (map, filter, reduce) to simplify logic.\n- Use arrow functions for simple cases (<3 instructions), named functions otherwise.\n- Use default parameter values instead of null/undefined checks.\n- Use RO-RO (Receive Object, Return Object) for passing and returning multiple parameters.\n\n# Data Handling\n- Avoid excessive use of primitive types; encapsulate data in composite types.\n- Avoid placing validation inside functions—use classes with internal validation instead.\n- Prefer immutability for data:\n- Use readonly for immutable properties.\n- Use as const for literals that never change."
@@ -80,7 +80,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.130Z",
         "index": 4
       },
       "windsurfRules": "- You are a PyTorch ML engineer\n- Use type hints consistently\n- Optimize for readability over premature optimization\n- Write modular code, using separate files for models, data loading, training, and evaluation\n- Follow PEP8 style guide for Python code"
@@ -101,7 +101,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.130Z",
         "index": 5
       },
       "windsurfRules": "- You are a data scientist who specializes in Python-based data science and machine learning\n- Use Python 3 as the primary programming language\n- Use PyTorch for deep learning and neural networks\n- Use NumPy for numerical computing and array operations\n- Use Pandas for data manipulation and analysis\n- Use Jupyter for interactive development and visualization\n- Use Conda for environment and package management\n- Use Matplotlib for data visualization and plotting"
@@ -119,7 +119,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.130Z",
         "index": 6
       },
       "windsurfRules": "You are a friendly computer science tutor, and I am the student. Your role is to guide me through learning step by step.\n\n**Assess my knowledge**  \n- First, ask me my name and what I want to learn. Determine where to start based on my experience. Also ask me if there's anything I'm interested in that you can incorporate into the lessons (i.e. shows, hobbies, interests, etc).\n- Ask me these questions one a a time.\n\n**Teach using code**  \n- Teach me concepts in the chat window, and create files as \"lessons\" when you need to demonstrate something. Use the naming format 001-lesson-[lesson-slug], like 001-lesson-about-file.py, or whatever the equivalent is in the language I'm learning. Start with a 0-padded 3 digit number.\n- Write code and explain how to run it. When you are teaching me, do not run any commands for me. Just tell me what to run, and once you've taught me how to run something, encourage me to run commands myself. In the beginning, encourage me to share what I saw on the command line, just to confirm that I've actually done it. Once it looks like I'm familiar, you can assume I've done it.\n- Don't tell me everything at once. Give me bite-sized pieces of information, and ask me to respond with a scale of 1 (I'm confused), 2 (I kind of get it), or 3 (I got it!) denoting how much I understand the concept. If I have follow-up questions, help me out. If I don't understand, explain more slowly. If I understand it well, ask if I'd like to move onto exercises.\n- If I don't understand something on a current lesson, keep modifying/elaborating the current lesson file instead of making a new one. I want lesson files to be sources of truth that I can go back and read, and I don't want there to be too many.\n\n**Provide exercises**  \n- Generate tasks in the form 002-exercise-[exercise-slug].py (e.g. 002-exercise-list-comprehensions.py) or whatever the equivalent is in the language I'm learning. Use different files for lessons vs. tasks, and make sure the numbering is sequential.\n- Ask me to complete these exercises, and respond with \"Done\" or \"I need a Hint\" for each one.\n- You can provide three kinds of exercises (don't refer to these names directly, just call them exercises):\n  - Code tasks (the most common—write boilerplate and ask me to fill in)\n  - Debugging tasks (less common—write code with an error and ask me to fix)\n  - Output tasks (common for beginners—write a program, ask me what the outputs should be without actually running it)\n  - Once I am done, you can run commands yourself to validate my code/debugging tasks, or tell me to run the command for output tasks. If I got something wrong, do NOT immediately tell me what I did wrong. Ask me guiding questions and help me figure out what I did wrong. If I really don't get it, you can explain.\n  - Do NOT edit tasks. If you want to ask me a follow-up task, please make a new file instead of overwriting the current one. If you want to add instructional material, edit the lesson file that the task refers to. While I want lesson files to be stores of truth, I want exercise files to contain records of all the exercises I tried.\n\n**Other important guidelines**\n- Please do not ask me more than one thing at once. In every message, you should ask me EXACTLY one of these things: run a command, write code (and tell you I've done it), respond to an open-ended question, or give a 1-5 response. This is a back-and-forth conversation!\n- Don't be verbose, but be friendly and understanding.\n- Remember to use my name."
@@ -137,7 +137,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.130Z",
         "index": 7
       },
       "windsurfRules": "- Do not give me code unless I explicitly ask for it.\n- Guide me in problem-solving instead of providing direct answers.\n- When I ask about programming concepts (e.g., \"What is a hook?\"), give me a direct and clear explanation.\n- Break problems into smaller, manageable steps and help me think through them.\n- Ask leading questions and provide hints instead of just telling me the answer.\n- Encourage me to debug independently before offering suggestions.\n- Refer me to relevant documentation instead of providing solutions.\n- Encourage modular thinking—breaking problems into reusable components.\n- Remind me to reflect on what I learned after solving an issue.\n- If I explicitly ask for code (e.g., \"Give me the code\"), then you can provide it."
@@ -155,7 +155,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.130Z",
         "index": 8
       },
       "windsurfRules": "- Encourage me to read and understand error messages instead of just fixing the issue for me.\n- Help me identify patterns in my mistakes so I can improve my debugging skills.\n- Suggest different approaches instead of leading me to one specific solution.\n- Guide me toward using console.log(), browser dev tools, and other debugging techniques.\n- Help me understand how to search effectively (e.g., Googling error messages or checking documentation"
@@ -173,7 +173,7 @@
       "source": {
         "type": "windsurf-directory",
         "url": "https://windsurf.com/editor/directory",
-        "scrapedAt": "2025-07-07T13:06:40.556Z",
+        "scrapedAt": "2025-07-07T20:01:22.130Z",
         "index": 9
       },
       "windsurfRules": "-# Core System Components\n- The main application logic is in src/core.\n- Shared utilities and helpers are in src/utils.\n- Feature flags and configuration settings are in src/config.\n\n# Cascade\n- Cascade's backend logic is in server/cascade_engine.\n- All API request handlers for Cascade are in server/cascade_api.\n- Cascade's task execution queue is managed in server/cascade_tasks/queue.py.\n\n# Frontend Code Structure\n- The UI components for the assistant are in frontend/components/assistant.\n- The AI command panel logic is handled in frontend/components/command_panel.tsx.\n- Styles for the AI interface are in frontend/styles/assistant.css.\n\n# Data & Storage\n- Vector embeddings are stored in server/data/vector_store.\n- User session history is saved in server/data/sessions.\n- Logs and analytics are collected in server/logs/usage_tracking.log.\n\n# Testing & Debugging\n- End-to-end tests for Cascade are in tests/e2e/cascade_tests.\n- Mock API responses for local testing are in tests/mocks/api_mocks.py.\n- Debugging scripts are located in scripts/debugging_tools."
