@@ -25,8 +25,13 @@ An interactive CLI tool to generate `.agent.md` and `.windsurfrules` files for A
 
 ## 📋 Prerequisites
 
-- **Bun** >= 1.0.0
-- **Node.js** >= 14.0.0 (for compatibility)
+### For Normal Use
+- **Node.js** >= 14.0.0
+
+### For Development
+- **Node.js** >= 14.0.0
+- **Bun** >= 1.0.0 (recommended for development)
+- **Git** (for contributing)
 
 ## 🛠️ Installation
 
