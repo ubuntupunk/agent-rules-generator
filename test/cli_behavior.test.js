@@ -4,7 +4,7 @@
  * Simple CLI behavior test for project type inclusivity
  */
 
-const { getProjectTypeQuestions, analyzeProjectTypes } = require('./lib/project_types.js');
+const { getProjectTypeQuestions, analyzeProjectTypes } = require('../lib/project_types.js');
 
 async function testProjectTypeQuestions() {
   console.log('🧪 Testing Project Type Question Generation\n');

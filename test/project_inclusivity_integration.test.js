@@ -5,8 +5,8 @@
  * Tests that different project types get appropriate questions and guidelines
  */
 
-const { getProjectTypeQuestions, analyzeProjectTypes, getProjectTypeFlags } = require('./lib/project_types');
-const { generateWindsurfRules } = require('./lib/generator_lib');
+const { getProjectTypeQuestions, analyzeProjectTypes, getProjectTypeFlags } = require('../lib/project_types');
+const { generateWindsurfRules } = require('../lib/generator_lib');
 
 async function testProjectTypeInclusivity() {
   console.log('🧪 Testing Project Type Inclusivity Improvements\n');
