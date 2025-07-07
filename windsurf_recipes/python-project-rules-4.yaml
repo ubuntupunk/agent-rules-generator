@@ -1,0 +1,20 @@
+name: Python Project Rules 4
+description: Windsurf rules extracted from directory - Python Project Rules 4
+category: Web Application
+tags:
+  - windsurf
+  - scraped
+  - directory
+techStack:
+  language: Python
+source:
+  type: windsurf-directory
+  url: https://windsurf.com/editor/directory
+  scrapedAt: '2025-07-07T12:07:48.849Z'
+  index: 4
+windsurfRules: |-
+  - You are a PyTorch ML engineer
+  - Use type hints consistently
+  - Optimize for readability over premature optimization
+  - Write modular code, using separate files for models, data loading, training, and evaluation
+  - Follow PEP8 style guide for Python code
