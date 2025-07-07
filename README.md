@@ -53,7 +53,7 @@ The Agent Rules Generator features a **modular architecture** designed for maint
 ```
 agent-rules-generator/
 ├── index.js                           # Main entry point
-├── agent_rules_cli.js      # Core CLI orchestrator (424 lines)
+├── agent_rules_cli.js                 # Core CLI orchestrator (424 lines)
 ├── lib/                               # Specialized modules (11 total)
 │   ├── recipe_manager.js              # Recipe selection and application
 │   ├── windsurf_manager.js            # Windsurf integration and menu handling
