@@ -12,6 +12,28 @@ That will help me maintain and improve the resources available for free
 
 An interactive CLI tool to generate `.agent.md` and `.windsurfrules` files for AI-assisted development with Cursor AI and Windsurf.
 
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+- 🐛 **Report bugs** via [GitHub Issues](https://github.com/ubuntupunk/agent-rules-generator/issues)
+- 💡 **Suggest features** or improvements
+- 📝 **Improve documentation** (README, guides, examples)
+- 🧪 **Add tests** for new functionality
+- 🔧 **Submit pull requests** with bug fixes or features
+- 🍳 **Create new recipes** for different tech stacks
+- 📋 **Add project types** for better inclusivity
+
+**Quick Start for Contributors:**
+```bash
+git clone https://github.com/ubuntupunk/agent-rules-generator.git
+cd agent-rules-generator
+bun install
+bun test  # Ensure all tests pass
+```
+
+See our [Testing Guide](docs/testing.md) and [Deployment Guide](docs/deployment.md) for detailed contribution guidelines.
+
 ## 🚀 Features
 
 - **Interactive CLI**: Guided setup process for creating AI assistant configuration files
@@ -35,172 +57,188 @@ An interactive CLI tool to generate `.agent.md` and `.windsurfrules` files for A
 
 ## 🛠️ Installation
 
-### Option 1: Install Dependencies and Run Locally
+### For Normal Use (Recommended)
+
+Install globally to use the CLI commands anywhere:
 
 ```bash
-# Install dependencies using Bun
-bun install
+# Using npm (recommended)
+npm install -g agent-rules-generator
 
-# Run the CLI tool
-bun run start
+# Using Bun (fast alternative)
+bun add -g agent-rules-generator
+
+# Using Yarn
+yarn global add agent-rules-generator
+
+# Using pnpm
+pnpm add -g agent-rules-generator
 ```
 
-### Option 2: Global Installation
+### For Development/Contributing
+
+If you want to contribute to the project or run from source:
 
 ```bash
+# Clone the repository
+git clone https://github.com/ubuntupunk/agent-rules-generator.git
+cd agent-rules-generator
+
 # Install dependencies
-bun install
+bun install  # or npm install
 
-# Link globally for system-wide access
-bun link
-
-# Now you can use it anywhere
-agent-rules
-# or
-generate-agent
-```
-
-## 🎯 Usage
-
-### Basic Usage
-
-```bash
-# Start the interactive CLI
-bun run start
-```
-
-### Available Commands
-
-```bash
-# Start the generator
-bun run start
+# Run from source
+node index.js
 
 # Run tests
-bun test
-
-# Lint code
-bun run lint
-
-# Format code
-bun run format
+bun test  # or npm test
 ```
 
-### Global Usage (after linking)
+## 🚀 Quick Start
 
-```bash
-# Generate agent rules file
-agent-rules
+1. **Install globally**:
+   ```bash
+   npm install -g agent-rules-generator
+   ```
 
-# Alternative command
-generate-agent
-```
+2. **Run the generator**:
+   ```bash
+   agent-rules-generator
+   ```
+   or
+   ```bash
+   generate-agent-rules
+   ```
 
-## 📁 Project Structure
+3. **Follow the interactive prompts** to configure your project
 
-```
-agent-rules-generator/
-├── agent_rules_cli.js      # Main CLI application
-├── package.json            # Project configuration
-├── bun.lock               # Bun lockfile
-├── lib/                   # Core library files
-│   ├── generator_lib.js   # File generation logic
-│   └── recipes_lib.js     # Recipe management
-├── recipes/               # Pre-built project templates
-│   └── react_recipe.txt   # React + TypeScript + Vite template
-└── templates/             # Template files (empty)
-```
+4. **Choose your output format**:
+   - `.agent.md` for Cursor AI
+   - `.windsurfrules` for Windsurf
+
+The tool will create a comprehensive configuration file tailored to your project type and technology stack.
+
+## 🎯 What It Does
+
+The Agent Rules Generator creates comprehensive configuration files that help AI assistants understand your project better. These files include:
+
+- **Project Overview**: Name, description, version, and type
+- **Technology Stack**: Conditional questions based on project type (no more irrelevant questions!)
+- **Coding Standards**: Style guides, linting rules, and conventions
+- **Project Structure**: Directory organization and file patterns
+- **Development Workflow**: Git workflow, branching strategy, and CI/CD processes
+- **Project Management**: Methodology, issue tracking, and documentation practices
+
+## 🏗️ Supported Project Types
+
+The tool now supports **6 different project types** with tailored question flows:
+
+### 🌐 **Web Applications**
+- Frontend frameworks (React, Vue, Angular, Svelte)
+- Backend frameworks (Express, FastAPI, Django, Spring Boot)
+- Databases (PostgreSQL, MongoDB, MySQL, SQLite)
+- Deployment platforms (Vercel, Netlify, AWS)
+
+### ⚡ **CLI Tools**
+- CLI frameworks (Commander.js, Yargs, Inquirer.js)
+- Configuration formats (JSON, YAML, TOML)
+- Package managers (npm, yarn, pnpm, bun)
+- No irrelevant frontend/backend questions
+
+### 📚 **Libraries/Packages**
+- Target environments (Node.js, Browser, Both)
+- Build systems (TypeScript, Rollup, Webpack)
+- Distribution formats (CommonJS, ESM, UMD)
+- Testing frameworks (Jest, Vitest, Mocha)
+
+### 📱 **Mobile Applications**
+- Platforms (iOS, Android, Cross-platform)
+- Frameworks (React Native, Flutter, Native)
+- State management (Redux, Zustand, Context API)
+- App store distribution
+
+### 🖥️ **Desktop Applications**
+- Frameworks (Electron, Tauri, Native)
+- UI libraries (React, Vue, Svelte)
+- Platform targets (Windows, macOS, Linux)
+- Distribution methods
+
+### 🔌 **API/Backend Services**
+- Backend frameworks (Express, FastAPI, Django)
+- Databases and data storage
+- API documentation tools
+- Authentication methods
 
 ## 🍳 Recipes & Templates
 
-### Recipe Repository
+### Recipe System
+The tool includes a sophisticated recipe system that fetches pre-built configurations from a remote GitHub repository. This allows for:
 
-The tool can fetch recipes from a remote GitHub repository, allowing for easy updates and sharing of project templates. By default, it uses the official recipe repository at [ubuntupunk/agent-rules-recipes](https://github.com/ubuntupunk/agent-rules-recipes).
+- **Easy Updates**: Recipes are updated automatically
+- **Community Contributions**: Anyone can contribute new recipes
+- **Technology Coverage**: Recipes for all major tech stacks
+- **Project Type Specific**: Recipes tailored to each project type
 
-#### Repository Structure
-```
-agent-rules-recipes/
-├── recipes/           # Recipe files (.yaml)
-└── templates/         # Template files referenced by recipes
-```
+### Available Recipes
+- React + TypeScript + Vite
+- Vue 3 + TypeScript + Vite
+- Node.js + Express + PostgreSQL
+- CLI Tool with Commander.js
+- React Native + Expo
+- Electron + React
+- And many more...
 
-#### Using a Custom Recipe Repository
-You can configure a custom repository by running:
+### Creating Custom Recipes
+You can contribute new recipes by:
+1. Forking the [recipe repository](https://github.com/ubuntupunk/agent-rules-recipes)
+2. Adding your recipe YAML file
+3. Submitting a pull request
+
+## 🧪 Development & Testing
+
+### For Contributors
+
 ```bash
-bun run start
+# Clone and setup
+git clone https://github.com/ubuntupunk/agent-rules-generator.git
+cd agent-rules-generator
+bun install
+
+# Run tests
+bun test                                    # All tests (90 tests)
+bun test test/recipe_download.test.js      # Recipe system (17 tests)
+bun test test/template_system.test.js      # Template system (18 tests)
+bun test test/deployment.test.js           # Deployment (33 tests)
+bun test test/project_types.test.js        # Project types (22 tests)
+
+# Run from source
+node index.js
+
+# Test deployment
+npm pack --dry-run
 ```
-Then select "Configure remote repository" and enter your GitHub repository in the format `owner/repo`.
 
-### API Integration
+### Project Structure
+```
+agent-rules-generator/
+├── index.js                 # Main CLI entry point
+├── agent_rules_cli.js       # Core CLI application
+├── lib/                     # Library modules
+│   ├── generator_lib.js     # File generation logic
+│   ├── recipes_lib.js       # Recipe management
+│   └── project_types.js     # Project type logic
+├── templates/               # Template files
+├── test/                    # Test suites (90 tests)
+├── docs/                    # Documentation
+├── CHANGELOG.md             # Version history
+└── README.md               # This file
+```
 
-The tool uses the GitHub API to fetch recipes and templates. For optimal performance and to avoid rate limiting, it's recommended to set up a GitHub Personal Access Token.
+## 📚 Documentation
 
-#### Setting Up GitHub Authentication
-1. Create a Personal Access Token:
-   - Go to GitHub → Settings → Developer Settings → Personal Access Tokens → Generate new token
-   - Select the `public_repo` scope (or `repo` for private repositories)
-   - Copy the generated token
-
-2. Configure the token:
-   ```bash
-   # Temporary (current session only)
-   export GITHUB_TOKEN=your_token_here
-   
-   # Or add to your shell profile (~/.bashrc, ~/.zshrc, etc.)
-   echo 'export GITHUB_TOKEN=your_token_here' >> ~/.bashrc
-   source ~/.bashrc
-   ```
-
-#### Rate Limits
-- **Unauthenticated**: 60 requests per hour
-- **Authenticated**: 5,000 requests per hour
-
-The tool will show your current rate limit status during operations.
-
-### Recipes
-Recipes are pre-configured project type definitions that provide default values for generating agent rules files. They contain metadata about technology stacks, coding standards, and project structures for specific types of projects.
-
-#### Creating Custom Recipes
-1. Create a new YAML file in the `recipes` directory of your repository
-2. Follow this structure:
-   ```yaml
-   name: "Project Type Name"
-   description: "Description of the project type"
-   technologies:
-     - "Technology 1"
-     - "Technology 2"
-   rules:
-     - "Rule 1"
-     - "Rule 2"
-   templates:
-     - source: "templates/filename.template"
-       target: "{{project_name}}/path/to/output"
-   ```
-3. Commit and push to your repository
-4. The tool will automatically detect new recipes on the next sync
-
-### Templates
-Templates are customizable markdown files that serve as the base structure for generated `.agent.md` or `.windsurfrules` files. They allow you to define custom sections and formatting for your AI assistant configuration files.
-
-### Community Contributions
-
-We welcome community contributions for both recipes and templates! Please see more details in the [Contributing](#contributing) section. If you have a recipe or template that would be useful for others:
-
-1. **For Recipes**: Create a YAML or text file in the `recipes/` directory following the existing format
-2. **For Templates**: Add a markdown file to the `templates/` directory with your custom template structure
-
-#### Recipe Format
-Recipes should include:
-- `name`: Name of the project type
-- `description`: Brief description of the project type
-- `category`: Category (Frontend, Backend, Full Stack, etc.)
-- `tags`: Array of relevant tags
-- `techStack`: Object containing technology details (language, frontend, backend, etc.)
-
-#### Template Format
-Templates are markdown files with placeholders for dynamic content. See existing templates in the `templates/` directory for examples.
-
-#### Submitting Recipe Contributions
-Please see more details in Contributing section. You wil need to fork the recipe repository [ubuntupunk/agent-rules-recipes](https://github.com/ubuntupunk/agent-rules-recipes) and submit a pull request.
+- **[Testing Guide](docs/testing.md)** - Comprehensive testing information
+- **[Deployment Guide](docs/deployment.md)** - Deployment and CI/CD processes
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history and release notes
 
 ## 🔧 Configuration
 
@@ -208,20 +246,22 @@ The CLI will guide you through configuring:
 
 ### Project Overview
 - Project name and description
-- Main purpose and goals
-- Target audience
+- Project type selection
+- Version and metadata
 
-### Technology Stack
-- Programming languages
-- Frameworks and libraries
-- Development tools
-- Testing frameworks
+### Technology Stack (Conditional)
+- **Web Apps**: Frontend, backend, database
+- **CLI Tools**: CLI framework, config format
+- **Libraries**: Target environment, build system
+- **Mobile Apps**: Platform, framework, state management
+- **Desktop Apps**: Framework, UI library, platforms
+- **API/Backend**: Backend framework, database
 
 ### Coding Standards
 - Code style preferences
 - Naming conventions
+- Linting and formatting tools
 - Documentation requirements
-- Best practices
 
 ### Project Structure
 - Directory organization
@@ -229,116 +269,57 @@ The CLI will guide you through configuring:
 - Module structure
 
 ### Workflow Guidelines
-- Development process
-- Code review practices
+- Git workflow and branching
+- CI/CD processes
 - Deployment procedures
+- Code review practices
 
 ## 📝 Generated Files
 
 ### `.agent.md` (Cursor AI)
-A markdown file containing project context and rules for Cursor AI assistant.
+A comprehensive markdown file containing:
+- Project context and overview
+- Technology-specific guidelines
+- Coding standards and conventions
+- Development workflow rules
+- AI assistant instructions
 
 ### `.windsurfrules` (Windsurf)
-A configuration file for Windsurf AI development environment.
+A configuration file for Windsurf AI development environment with:
+- Project-specific rules
+- Technology guidelines
+- Code generation preferences
+- Quality standards
 
-## 🚀 Development
+## 🎯 Benefits
 
-### Setup Development Environment
+### Before v1.1.0 (React-Biased)
+- ❌ Always assumed web applications
+- ❌ Asked irrelevant frontend/backend questions for CLI tools
+- ❌ Limited to 6 technology guidelines
+- ❌ One-size-fits-all approach
 
-```bash
-# Clone the repository
-git clone <your-repo-url>
-cd agent-rules-generator
+### After v1.1.0 (Inclusive)
+- ✅ **6 project types** supported with specific workflows
+- ✅ **Conditional questions** - only relevant ones asked
+- ✅ **20+ technologies** with specific guidelines
+- ✅ **Context-aware** messaging and defaults
+- ✅ **Backward compatible** - existing users unaffected
 
-# Install dependencies with Bun
-bun install
+## 📊 Version History
 
-# Run in development mode
-bun run start
-```
-
-### Available Scripts
-
-```bash
-# Start the application
-bun run start
-
-# Run tests
-bun test
-
-# Lint code
-bun run lint
-
-# Format code with Prettier
-bun run format
-
-# Prepare husky hooks
-bun run prepare
-```
-
-## 🧪 Testing
-
-```bash
-# Run all tests
-bun test
-
-# Run tests with coverage
-bun test --coverage
-```
-
-## 📦 Building
-
-The project is ready to run without a build step. For distribution:
-
-```bash
-# Create a production-ready package
-bun run prepare
-```
-
-## 📡 Deployment
-
-The project is set up with a GitHub Action that automatically deploys and publishes the package to the default npm registry when a new tag is pushed. To trigger deployment:
-
-1. Create a new tag (e.g., `v1.0.0`)
-2. Push the tag to the remote repository: `git push origin v1.0.0`
-
-Ensure you have set up the `NPM_TOKEN` secret in your GitHub repository settings with the necessary npm publish permissions. The GitHub Action will use this token to authenticate with the npm registry.
-
-## 🤝 Contributing
-
-We welcome contributions to both the main application and the recipe repository. Please follow these guidelines:
-
-### For Code Contributions (Main Repository)
-- Submit all code improvements, bug fixes, and new features to the main repository: [ubuntupunk/agent-rules-generator](https://github.com/ubuntupunk/agent-rules-generator)
-- Follow the existing code style and include tests for new features
-- Create a descriptive pull request explaining your changes
-
-### For Community Recipe Contributions
-- Submit all recipe additions and modifications to the recipe repository: [ubuntupunk/agent-rules-recipes](https://github.com/ubuntupunk/agent-rules-recipes)
-- Follow the recipe format and structure
-- Include clear descriptions and relevant metadata for your recipes
-
-### Development Setup
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Issues
-- For bugs and feature requests, please use the [GitHub Issues](https://github.com/ubuntupunk/agent-rules-generator/issues) in the appropriate repository
-- Clearly describe the issue or feature request
-- Include steps to reproduce for bugs
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history and release notes.
 
 ## 📄 License
 
-This project is licensed under the GNU General Public License (GPL) - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
 - Thanks to all contributors who help improve this tool
-- Inspired by the need for better AI-assisted development workflows
+- Special thanks to the AI development community for feedback and suggestions
+- Built with ❤️ for developers working with AI assistants
 
 ---
 
-Built with ❤️ by ubuntupunk
+**Made with ❤️ by [ubuntupunk](https://github.com/ubuntupunk)**
