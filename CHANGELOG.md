@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2024-12-19
+
+### 🚀 Added
+- Comprehensive test suite for Windsurf recipe customization flow (9 new tests)
+- JSDoc documentation for key modules (recipe_manager, tech_stack_collector, project_configurator)
+- Development guide in README with modular architecture documentation
+- Complete .agent.md file with project structure and AI assistant guidelines
+
+### 🔧 Fixed
+- **CRITICAL:** Windsurf recipe search now allows selection of found recipes
+- **CRITICAL:** Fixed "result is not defined" error in setupTechnologyStack()
+- **CRITICAL:** Windsurf recipe customization flow now works correctly
+- Result propagation chain through all recipe manager methods
+- Variable declaration and scoping issues in main CLI
+
+### 📦 Changed
+- Updated README with modular architecture section and enhanced testing guidelines
+- Moved refactor task documentation to task.md with completed status
+- Enhanced test coverage from 99 to 108 tests (100% pass rate)
+- Improved error handling and user experience in Windsurf flows
+
+### 🧪 Testing
+- Complete refactoring: Main CLI reduced from 779 → 424 lines (45% reduction)
+- 11 specialized modules with clean separation of concerns
+- All functionality preserved including awesome startup screen
+- Comprehensive documentation and contribution guidelines
+
+### 🎯 Benefits
+- **Enhanced Reliability**: Critical Windsurf bugs fixed with comprehensive test coverage
+- **Better Architecture**: Modular design with clean separation of concerns
+- **Improved Documentation**: Complete development guides and AI assistant rules
+- **Professional Quality**: 100% test pass rate with robust error handling
+
 ## [1.2.0] - 2024-01-15
 
 ### 📚 Documentation

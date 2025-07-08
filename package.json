@@ -1,6 +1,6 @@
 {
   "name": "agent-rules-generator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Interactive CLI tool to generate .agent.md and .windsurfrules files for AI-assisted development",
   "main": "index.js",
   "bin": {

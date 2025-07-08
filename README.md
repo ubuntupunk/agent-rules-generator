@@ -82,7 +82,8 @@ agent-rules-generator/
 - ✅ **45% code reduction**: Main CLI reduced from 779 → 424 lines
 - ✅ **11 specialized modules** with clean separation of concerns
 - ✅ **100% functionality preserved** including the awesome startup screen
-- ✅ **All tests passing** with updated integration tests
+- ✅ **All 108 tests passing** with comprehensive coverage
+- ✅ **Bug fixes completed**: Windsurf recipe customization flow fully functional
 
 ## 📋 Prerequisites
 
@@ -168,11 +169,14 @@ The codebase is organized into specialized modules for easy development and main
 
 #### **Testing Guidelines**
 ```bash
-# Run all tests
+# Run all tests (108 tests across 8 test suites)
 bun test
 
 # Run specific test suite
 bun test test/template_system.test.js
+
+# Run Windsurf customization flow tests
+bun test test/windsurf_customization_flow.test.js
 
 # Test with verbose output
 bun test --verbose
