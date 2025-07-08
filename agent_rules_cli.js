@@ -386,8 +386,14 @@ class AgentRulesGenerator {
         await this.techStackCollector.manualTechStackSetup();
     }
 
-    // The customization question is now handled within the recipe manager
-    // No need to ask again here
+    // Handle customization request from recipe application
+    if (result === 'customize_tech_stack') {
+      console.log(chalk.blue('\nCustomize Technology Stack'));
+      console.log(chalk.gray('Current technology stack:'));
+      console.log(chalk.cyan(JSON.stringify(this.config.technologyStack, null, 2)));
+      
+      await this.techStackCollector.customizeTechStack();
+    }
   }
 
   async generateAndSave() {
