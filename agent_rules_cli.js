@@ -336,6 +336,7 @@ class AgentRulesGenerator {
   }
 
   async setupTechnologyStack() {
+    let result;
     const { method } = await inquirer.prompt([
       {
         type: 'list',
@@ -355,7 +356,7 @@ class AgentRulesGenerator {
 
     switch (method) {
       case 'Use a recipe (recommended)':
-        await this.recipeManager.browseRecipes();
+        result = await this.recipeManager.browseRecipes();
         break;
       
       case 'Manual setup':
@@ -367,7 +368,7 @@ class AgentRulesGenerator {
         return await this.setupTechnologyStack(); // Return to menu
       
       case 'Windsurf recipes':
-        await this.recipeManager.handleWindsurfRecipes();
+        result = await this.recipeManager.handleWindsurfRecipes();
         break;
       
       case 'Refresh recipes':
