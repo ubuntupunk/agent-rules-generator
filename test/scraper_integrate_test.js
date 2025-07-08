@@ -31,7 +31,7 @@ async function testScraperIntegration() {
       console.log(`   ✅ Scraper file exists: ${scraperStats.size} bytes`);
       
       // Test if we can import the scraper
-      const scraper = require('./lib/windsurf_scraper.js');
+      const scraper = require('../lib/windsurf_scraper.js');
       const hasRequiredFunctions = [
         'fetchWindsurfRecipes',
         'listWindsurfRecipes', 
@@ -62,7 +62,7 @@ async function testScraperIntegration() {
     // Test 3: Check CLI menu option
     console.log('\n📋 Test 3: CLI Menu Options');
     try {
-      const cliContent = await fs.readFile('agent_rules_cli_refactored.js', 'utf8');
+      const cliContent = await fs.readFile('../agent_rules_cli.js', 'utf8');
       results.cliMenuOption = cliContent.includes('Windsurf recipes');
       console.log(`   ${results.cliMenuOption ? '✅' : '❌'} Menu option: ${results.cliMenuOption ? 'Present' : 'Missing'}`);
     } catch (error) {
@@ -72,7 +72,7 @@ async function testScraperIntegration() {
     // Test 4: Check CLI handler methods
     console.log('\n📋 Test 4: CLI Handler Methods');
     try {
-      const cliContent = await fs.readFile('agent_rules_cli_refactored.js', 'utf8');
+      const cliContent = await fs.readFile('../agent_rules_cli.js', 'utf8');
       // Check if setupTechnologyStack method includes Windsurf recipes option
       const hasWindsurfOption = cliContent.includes('Windsurf recipes');
       const hasRecipeManagerCall = cliContent.includes('recipeManager.handleWindsurfRecipes');
@@ -92,7 +92,7 @@ async function testScraperIntegration() {
     // Test 5: Check CLI routing
     console.log('\n📋 Test 5: CLI Menu Routing');
     try {
-      const cliContent = await fs.readFile('agent_rules_cli_refactored.js', 'utf8');
+      const cliContent = await fs.readFile('../agent_rules_cli.js', 'utf8');
       results.cliRouting = cliContent.includes("case 'Windsurf recipes'") &&
                           cliContent.includes('recipeManager.handleWindsurfRecipes()');
       console.log(`   ${results.cliRouting ? '✅' : '❌'} Menu routing: ${results.cliRouting ? 'Present' : 'Missing'}`);
@@ -103,7 +103,7 @@ async function testScraperIntegration() {
     // Test 6: Test actual CLI functionality
     console.log('\n📋 Test 6: CLI Class Functionality');
     try {
-      const { AgentRulesGenerator } = require('./agent_rules_cli_refactored.js');
+      const { AgentRulesGenerator } = require('../agent_rules_cli.js');
       const generator = new AgentRulesGenerator();
       
       // Check if the refactored structure has the recipe manager with Windsurf support
@@ -159,7 +159,7 @@ async function testScraperFunctionality() {
   console.log('\n🧪 Testing Scraper Functionality\n');
   
   try {
-    const scraper = require('./lib/windsurf_scraper.js');
+    const scraper = require('../lib/windsurf_scraper.js');
     
     // Test basic functionality
     console.log('📋 Testing fetchWindsurfRecipes...');
