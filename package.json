@@ -10,6 +10,10 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest",
+    "validate": "node scripts/validate_recipes.js",
+    "validate:remote": "node scripts/validate_recipes.js --remote",
+    "validate:fix": "node scripts/validate_recipes.js --remote --fix",
+    "validate:sample": "node scripts/validate_recipes.js --sample",
     "lint": "eslint .",
     "format": "prettier --write .",
     "prepare": "husky install",
