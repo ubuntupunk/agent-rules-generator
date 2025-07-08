@@ -1,3 +1,95 @@
+name: Deploy to NPM
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run tests
+        run: bun test
+
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Get current version
+        id: current_version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Bump version
+        id: version
+        run: |
+          npm version patch --no-git-tag-version
+          echo "new_version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Commit version bump
+        run: |
+          git add package.json
+          git commit -m "chore: bump version to v$(node -p "require('./package.json').version")"
+
+      - name: Create and push tag
+        run: |
+          git tag v$(node -p "require('./package.json').version")
+
+      - name: Publish package
+        id: npm_publish
+        run: npm publish
+        env:
+          NODE_ENV: production
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Notify NPM Publish Success
+        if: success()
+        run: |
+          echo "=== NPM PACKAGE PUBLISHED SUCCESSFULLY ==="
+          echo "Package: agent-rules-generator"
+          echo "Version: $(node -p "require('./package.json').version")"
+          echo "Published: $(date)"
+          echo "NPM: https://www.npmjs.com/package/agent-rules-generator"
+          echo "Install: npm install -g agent-rules-generator@$(node -p "require('./package.json').version")"
+          echo ""
+          echo "STATUS: NPM Package Published and Available"
+
+      - name: Notify NPM Publish Failure
+        if: failure()
+        run: |
+          echo "=== NPM PACKAGE PUBLISH FAILED ==="
+          echo "Package: agent-rules-generator"
+          echo "Version: $(node -p "require('./package.json').version")"
+          echo "Failed at: $(date)"
+          echo "Check logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo ""
+          echo "STATUS: NPM Publish FAILED - Check NPM_TOKEN and workflow logs"
+          
+      - name: Push changes and tags
+        run: |
+          git push origin main
+          git push origin --tags
 
       - name: Notify Deployment Complete
         if: success()
