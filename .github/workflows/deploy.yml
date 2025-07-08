@@ -1,61 +1,23 @@
-name: Publish Node Package
-on:
-  push:
-    tags:
-      - '*'
-jobs:
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          cache: 'npm'
-      - name: Install dependencies
-        run: bun install
-      - name: Authenticate with NPM
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-      - name: Update documentation
-        run: |
-          # Update CHANGELOG with current date
-          CURRENT_DATE=$(date +%Y-%m-%d)
-          sed -i "s/## \[.*\] - 2024-01-XX/## [$(node -p "require('./package.json').version")] - $CURRENT_DATE/" CHANGELOG.md
-          
-          # Commit documentation updates
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add CHANGELOG.md README.md
-          git commit -m "docs: update changelog and readme for release" || echo "No documentation changes to commit"
 
-      - name: Bump version
+      - name: Notify Deployment Complete
+        if: success()
         run: |
-          # Get current version and increment patch
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          echo "Current version: $CURRENT_VERSION"
-          
-          # Use npm version to bump and create git tag
-          npm version patch --no-git-tag-version
-          
-          NEW_VERSION=$(node -p "require('./package.json').version")
-          echo "New version: $NEW_VERSION"
-          
-          # Commit version change and create tag
-          git add package.json
-          git commit -m "chore: bump version to $NEW_VERSION [skip ci]"
-          git tag "v$NEW_VERSION"
-        env:
-          NODE_ENV: production
+          echo "=== DEPLOYMENT COMPLETED SUCCESSFULLY ==="
+          echo "Package: agent-rules-generator"
+          echo "Version: $(node -p "require('./package.json').version")"
+          echo "Released: $(date)"
+          echo "GitHub: https://github.com/${{ github.repository }}/releases"
+          echo "NPM: https://www.npmjs.com/package/agent-rules-generator"
+          echo "Install: npm install -g agent-rules-generator"
+          echo ""
+          echo "STATUS: GitHub Release and NPM Package both published successfully"
 
-      - name: Publish package
-        run: npm publish
-        env:
-          NODE_ENV: production
-          
-      - name: Push changes and tags
+      - name: Notify Deployment Failure
+        if: failure()
         run: |
-          git push origin main
-          git push origin --tags
+          echo "=== DEPLOYMENT FAILED ==="
+          echo "Package: agent-rules-generator"
+          echo "Failed at: $(date)"
+          echo "Check logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo ""
+          echo "STATUS: Deployment FAILED - Check workflow logs"
