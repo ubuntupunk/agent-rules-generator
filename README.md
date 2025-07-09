@@ -44,6 +44,54 @@ See our [Testing Guide](docs/testing.md) and [Deployment Guide](docs/deployment.
 - **Enhanced Technology Support**: 20+ technology-specific guidelines and best practices
 - **Project Structure Analysis**: Automatically detects and configures based on your project setup
 - **Customizable Rules**: Define coding standards, workflow guidelines, and project-specific instructions
+- **Interactive Recipe Creator**: Create new recipes with guided prompts and auto-validation
+- **Recipe Validation**: Comprehensive validation system with auto-fix capabilities
+
+## 🍳 Recipe Creation & Validation
+
+### **Interactive Recipe Creator**
+Create high-quality recipes with guided assistance:
+
+```bash
+# Start the CLI and select "Create new recipe"
+agent-rules-generator
+
+# Or use validation commands
+npm run validate:remote     # Validate remote recipes
+npm run validate:sample     # Generate sample recipe
+node scripts/validate_recipes.js --help  # See all options
+```
+
+#### **Creation Flow:**
+1. **Basic Information** - Name, description, category with validation
+2. **Technology Stack** - Guided setup, manual entry, or package.json import
+3. **Optional Fields** - Author, version, tags with smart defaults
+4. **Rules Generation** - Auto-generated templates or custom rules
+5. **Validation & Review** - Real-time validation with auto-fixes
+6. **Save & Integration** - Flexible saving with git integration
+
+#### **Smart Features:**
+- **Category-based suggestions** for languages and frameworks
+- **Package.json detection** for existing projects
+- **Template generation** based on technology stack
+- **Real-time validation** with 15+ quality checks
+- **Auto-fix functionality** for common issues
+- **Git integration** for automatic recipe tracking
+
+#### **Recipe Validation:**
+```bash
+# Validate specific recipe file
+node scripts/validate_recipes.js --file recipe.json
+
+# Validate with auto-fix
+node scripts/validate_recipes.js --file recipe.json --fix
+
+# Validate all recipes in directory
+node scripts/validate_recipes.js --dir ./recipes
+
+# Generate sample recipe template
+node scripts/validate_recipes.js --sample > new_recipe.json
+```
 
 ## 🏗️ Architecture
 
@@ -169,17 +217,39 @@ The codebase is organized into specialized modules for easy development and main
 
 #### **Testing Guidelines**
 ```bash
-# Run all tests (108 tests across 8 test suites)
+# Run all tests (140+ tests across 9 test suites)
 bun test
 
 # Run specific test suite
 bun test test/template_system.test.js
 
-# Run Windsurf customization flow tests
+# Run recipe creation tests (34 tests)
+bun test test/recipe_creator.test.js
+
+# Run recipe validation tests (15 tests)
+bun test test/recipe_validation.test.js
+
+# Run Windsurf customization flow tests (9 tests)
 bun test test/windsurf_customization_flow.test.js
 
 # Test with verbose output
 bun test --verbose
+```
+
+#### **Test Coverage:**
+- **Recipe Creator**: 34 tests covering suggestions, detection, templates, validation
+- **Recipe Validation**: 15 tests covering validation rules, auto-fixes, edge cases
+- **Windsurf Integration**: 9 tests covering customization flow and bug fixes
+- **Template System**: 18 tests covering file generation and technology detection
+- **Deployment**: 33 tests covering package config and CI/CD validation
+
+#### **Recipe Management Scripts**
+```bash
+# Validate recipes
+npm run validate              # Validate local/remote recipes
+npm run validate:remote       # Validate remote GitHub recipes  
+npm run validate:fix          # Validate with auto-fix enabled
+npm run validate:sample       # Generate sample recipe template
 ```
 
 #### **Code Quality Standards**
