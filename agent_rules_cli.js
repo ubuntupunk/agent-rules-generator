@@ -19,6 +19,7 @@ const { ProjectConfigurator } = require('./lib/project_configurator');
 const { generateAgentFile } = require('./lib/generator_lib');
 const CacheManager = require('./lib/cache_manager');
 const RepositoryManager = require('./lib/repository_manager');
+const { RecipeCreator } = require('./lib/recipe_creator');
 
 class AgentRulesGenerator {
   constructor() {
@@ -39,6 +40,7 @@ class AgentRulesGenerator {
     this.projectConfigurator = new ProjectConfigurator(this.config);
     this.cacheManager = new CacheManager();
     this.repositoryManager = new RepositoryManager();
+    this.recipeCreator = new RecipeCreator(this.config);
   }
 
   async run() {
@@ -88,6 +90,7 @@ class AgentRulesGenerator {
           choices: [
             { name: 'Generate agent rules file', value: 'generate' },
             { name: 'Manage recipes', value: 'recipes' },
+            { name: 'Create new recipe', value: 'create-recipe' },
             { name: 'Configure remote repository', value: 'configure' },
             { name: 'Exit', value: 'exit' }
           ]
@@ -100,6 +103,9 @@ class AgentRulesGenerator {
           break;
         case 'recipes':
           await this.manageRecipes();
+          break;
+        case 'create-recipe':
+          await this.createNewRecipe();
           break;
         case 'configure':
           await this.configureRemoteRepository();
@@ -425,6 +431,60 @@ class AgentRulesGenerator {
       }
     } catch (error) {
       console.error(chalk.red(`❌ Error generating file: ${error.message}`));
+    }
+  }
+  async createNewRecipe() {
+    try {
+      console.log(chalk.blue('\nRecipe Creator'));
+      console.log(chalk.gray('Create a new recipe with guided prompts and auto-validation\n'));
+      
+      const recipe = await this.recipeCreator.createRecipe();
+      
+      console.log(chalk.green('\nRecipe created successfully!'));
+      console.log(chalk.cyan(`Recipe: ${recipe.name}`));
+      console.log(chalk.cyan(`Category: ${recipe.category}`));
+      console.log(chalk.cyan(`Version: ${recipe.version || '1.0.0'}`));
+      
+      const { useForProject } = await inquirer.prompt([
+        {
+          type: 'confirm',
+          name: 'useForProject',
+          message: 'Would you like to use this recipe for the current project?',
+          default: false
+        }
+      ]);
+
+      if (useForProject) {
+        this.config.technologyStack = { ...recipe.techStack };
+        if (recipe.windsurfRules) {
+          this.config.windsurfRules = recipe.windsurfRules;
+        }
+        if (recipe.agentRules) {
+          this.config.agentRules = recipe.agentRules;
+        }
+        
+        console.log(chalk.green('Recipe applied to current project configuration'));
+        
+        const { generateNow } = await inquirer.prompt([
+          {
+            type: 'confirm',
+            name: 'generateNow',
+            message: 'Generate agent rules file with this recipe?',
+            default: true
+          }
+        ]);
+
+        if (generateNow) {
+          await this.generateAgentRules();
+        }
+      }
+      
+    } catch (error) {
+      if (error.message === 'Recipe creation cancelled by user') {
+        console.log(chalk.yellow('\nRecipe creation cancelled'));
+      } else {
+        console.error(chalk.red(`\nRecipe creation failed: ${error.message}`));
+      }
     }
   }
 }
