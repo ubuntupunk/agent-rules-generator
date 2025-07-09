@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "jest",
+    "test": "bun test",
     "validate": "node scripts/validate_recipes.js",
     "validate:remote": "node scripts/validate_recipes.js --remote",
     "validate:fix": "node scripts/validate_recipes.js --remote --fix",

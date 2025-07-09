@@ -21,17 +21,25 @@ The Agent Rules Generator uses a comprehensive testing strategy covering:
 ## Test Architecture
 
 ### Testing Framework
-- **Test Runner**: Bun Test (built-in test runner)
+- **Test Runner**: Bun Test (built-in test runner) 
+- **Package Manager**: Bun (replaces npm for faster operations)
 - **Assertion Library**: Bun's built-in expect API
 - **Test Structure**: Describe/test blocks with ES6 imports
 - **Mocking**: Custom mock implementations for external dependencies
+- **Total Coverage**: 181 tests across 9 test suites
 
 ### Test Organization
 ```
 test/
-├── recipe_download.test.js    # Recipe system tests (17 tests)
-├── template_system.test.js    # Template system tests (18 tests)
-└── deployment.test.js         # Deployment tests (33 tests)
+├── recipe_download.test.js         # Recipe system tests (17 tests)
+├── template_system.test.js         # Template system tests (18 tests)
+├── deployment.test.js              # Deployment tests (33 tests)
+├── windsurf_customization_flow.test.js  # Windsurf flow tests (9 tests)
+├── recipe_validation.test.js       # Recipe validation tests (15 tests)
+├── recipe_creator.test.js          # Recipe creator tests (33 tests)
+├── project_types.test.js           # Project types tests (21 tests)
+├── file_format_handler.test.js     # File format tests (35 tests)
+└── scraper_integrate_test.js       # Integration test (non-Jest format)
 ```
 
 ### Test Naming Convention

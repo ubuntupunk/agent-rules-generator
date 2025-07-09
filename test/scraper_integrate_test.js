@@ -25,7 +25,7 @@ async function testScraperIntegration() {
     // Test 1: Check if windsurf_scraper.js exists and is functional
     console.log('📋 Test 1: Windsurf Scraper Module');
     try {
-      const scraperPath = path.join(__dirname, 'lib', 'windsurf_scraper.js');
+      const scraperPath = path.join(__dirname, '..', 'lib', 'windsurf_scraper.js');
       const scraperStats = await fs.stat(scraperPath);
       results.scraperExists = scraperStats.size > 0;
       console.log(`   ✅ Scraper file exists: ${scraperStats.size} bytes`);
@@ -51,10 +51,11 @@ async function testScraperIntegration() {
     // Test 2: Check CLI imports
     console.log('\n📋 Test 2: CLI Import Statements');
     try {
-      const cliContent = await fs.readFile('agent_rules_cli.js', 'utf8');
-      results.cliImports = cliContent.includes('windsurf_scraper') && 
-                          cliContent.includes('fetchWindsurfRecipes');
-      console.log(`   ${results.cliImports ? '✅' : '❌'} Windsurf imports: ${results.cliImports ? 'Present' : 'Missing'}`);
+      const cliContent = await fs.readFile(path.join(__dirname, '..', 'agent_rules_cli.js'), 'utf8');
+      // Check for proper modular imports (WindsurfManager and RecipeManager handle windsurf_scraper)
+      results.cliImports = cliContent.includes('WindsurfManager') && 
+                          cliContent.includes('RecipeManager');
+      console.log(`   ${results.cliImports ? '✅' : '❌'} Modular imports: ${results.cliImports ? 'Present (WindsurfManager, RecipeManager)' : 'Missing'}`);
     } catch (error) {
       console.log(`   ❌ CLI file error: ${error.message}`);
     }
@@ -62,7 +63,7 @@ async function testScraperIntegration() {
     // Test 3: Check CLI menu option
     console.log('\n📋 Test 3: CLI Menu Options');
     try {
-      const cliContent = await fs.readFile('../agent_rules_cli.js', 'utf8');
+      const cliContent = await fs.readFile(path.join(__dirname, '..', 'agent_rules_cli.js'), 'utf8');
       results.cliMenuOption = cliContent.includes('Windsurf recipes');
       console.log(`   ${results.cliMenuOption ? '✅' : '❌'} Menu option: ${results.cliMenuOption ? 'Present' : 'Missing'}`);
     } catch (error) {
@@ -72,7 +73,7 @@ async function testScraperIntegration() {
     // Test 4: Check CLI handler methods
     console.log('\n📋 Test 4: CLI Handler Methods');
     try {
-      const cliContent = await fs.readFile('../agent_rules_cli.js', 'utf8');
+      const cliContent = await fs.readFile(path.join(__dirname, '..', 'agent_rules_cli.js'), 'utf8');
       // Check if setupTechnologyStack method includes Windsurf recipes option
       const hasWindsurfOption = cliContent.includes('Windsurf recipes');
       const hasRecipeManagerCall = cliContent.includes('recipeManager.handleWindsurfRecipes');
@@ -92,7 +93,7 @@ async function testScraperIntegration() {
     // Test 5: Check CLI routing
     console.log('\n📋 Test 5: CLI Menu Routing');
     try {
-      const cliContent = await fs.readFile('../agent_rules_cli.js', 'utf8');
+      const cliContent = await fs.readFile(path.join(__dirname, '..', 'agent_rules_cli.js'), 'utf8');
       results.cliRouting = cliContent.includes("case 'Windsurf recipes'") &&
                           cliContent.includes('recipeManager.handleWindsurfRecipes()');
       console.log(`   ${results.cliRouting ? '✅' : '❌'} Menu routing: ${results.cliRouting ? 'Present' : 'Missing'}`);
@@ -141,7 +142,7 @@ async function testScraperIntegration() {
       console.log('\n🔧 Required Actions:');
       if (!results.scraperExists) console.log('   - Create or fix lib/windsurf_scraper.js');
       if (!results.scraperFunctional) console.log('   - Fix windsurf_scraper.js exports');
-      if (!results.cliImports) console.log('   - Add windsurf_scraper imports to agent_rules_cli.js');
+      if (!results.cliImports) console.log('   - Fix WindsurfManager and RecipeManager imports in agent_rules_cli.js');
       if (!results.cliMenuOption) console.log('   - Add "Windsurf recipes" to menu choices');
       if (!results.cliHandlers) console.log('   - Add Windsurf handler methods to CLI class');
       if (!results.cliRouting) console.log('   - Add menu routing for Windsurf recipes');

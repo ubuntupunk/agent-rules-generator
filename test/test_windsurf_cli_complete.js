@@ -6,7 +6,7 @@
  */
 
 const fs = require('fs').promises;
-const { AgentRulesGenerator } = require('./agent_rules_cli.js');
+const { AgentRulesGenerator } = require('../agent_rules_cli.js');
 
 async function testCompleteIntegration() {
   console.log('🌊 Complete Windsurf CLI Integration Test\n');

@@ -191,7 +191,7 @@ describe('Deployment Flow Tests', () => {
       expect(workflowContent).toContain('on:');
       expect(workflowContent).toContain('push:');
       expect(workflowContent).toContain('tags:');
-      expect(workflowContent).toContain("- '*'");
+      expect(workflowContent).toContain("- 'v*'");
     });
 
     test('should use correct Node.js version', () => {
@@ -199,7 +199,7 @@ describe('Deployment Flow Tests', () => {
     });
 
     test('should have npm authentication step', () => {
-      expect(workflowContent).toContain('Authenticate with NPM');
+      expect(workflowContent).toContain('NODE_AUTH_TOKEN');
       expect(workflowContent).toContain('NPM_TOKEN');
       expect(workflowContent).toContain('registry.npmjs.org');
     });
