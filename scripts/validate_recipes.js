@@ -19,6 +19,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const chalk = require('chalk');
+const { fileFormatHandler } = require('../lib/file_format_handler');
 
 class RecipeValidator {
   constructor(options = {}) {
@@ -199,15 +200,25 @@ class RecipeValidator {
    */
   async validateFile(filePath) {
     try {
-      const content = await fs.readFile(filePath, 'utf8');
-      let recipes;
-
-      try {
-        recipes = JSON.parse(content);
-      } catch (parseError) {
+      // Check if file format is supported
+      if (!fileFormatHandler.isSupportedFormat(filePath)) {
+        const ext = path.extname(filePath);
         return {
           valid: false,
-          errors: [`Invalid JSON: ${parseError.message}`],
+          errors: [`Unsupported file format: ${ext}. Supported formats: .json, .yaml, .yml`],
+          warnings: [],
+          fixes: []
+        };
+      }
+
+      let recipes;
+      try {
+        recipes = await fileFormatHandler.readFile(filePath);
+      } catch (parseError) {
+        const format = fileFormatHandler.isJsonFormat(filePath) ? 'JSON' : 'YAML';
+        return {
+          valid: false,
+          errors: [`Invalid ${format}: ${parseError.message}`],
           warnings: [],
           fixes: []
         };
@@ -271,11 +282,10 @@ class RecipeValidator {
    */
   async validateDirectory(dirPath) {
     try {
-      const files = await fs.readdir(dirPath);
-      const jsonFiles = files.filter(file => file.endsWith('.json'));
+      const supportedFiles = await fileFormatHandler.getSupportedFiles(dirPath);
       
       const results = [];
-      for (const file of jsonFiles) {
+      for (const file of supportedFiles) {
         const filePath = path.join(dirPath, file);
         const result = await this.validateFile(filePath);
         results.push(result);
@@ -513,17 +523,22 @@ Usage:
   node scripts/validate_recipes.js [options]
 
 Options:
-  --file <path>     Validate a specific recipe file
-  --dir <path>      Validate all recipes in a directory
+  --file <path>     Validate a specific recipe file (JSON/YAML)
+  --dir <path>      Validate all recipes in a directory (JSON/YAML)
   --remote          Validate remote recipes from GitHub
   --fix             Attempt to fix common issues
   --verbose         Show detailed validation output
   --sample          Generate a sample recipe file
   --help            Show this help message
 
+Supported Formats:
+  - JSON (.json)
+  - YAML (.yaml, .yml)
+
 Examples:
   node scripts/validate_recipes.js --remote
   node scripts/validate_recipes.js --file recipes/react.json
+  node scripts/validate_recipes.js --file recipes/react.yaml
   node scripts/validate_recipes.js --dir ./recipes --fix
   node scripts/validate_recipes.js --sample > sample_recipe.json
 `);

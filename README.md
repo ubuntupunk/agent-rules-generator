@@ -80,18 +80,27 @@ node scripts/validate_recipes.js --help  # See all options
 
 #### **Recipe Validation:**
 ```bash
-# Validate specific recipe file
+# Validate specific recipe file (JSON or YAML)
 node scripts/validate_recipes.js --file recipe.json
+node scripts/validate_recipes.js --file recipe.yaml
 
 # Validate with auto-fix
 node scripts/validate_recipes.js --file recipe.json --fix
+node scripts/validate_recipes.js --file recipe.yaml --fix
 
-# Validate all recipes in directory
+# Validate all recipes in directory (supports mixed formats)
 node scripts/validate_recipes.js --dir ./recipes
 
-# Generate sample recipe template
+# Generate sample recipe templates
 node scripts/validate_recipes.js --sample > new_recipe.json
+node scripts/validate_recipes.js --sample | yaml-convert > new_recipe.yaml
 ```
+
+#### **Supported File Formats:**
+- **JSON** (`.json`) - Traditional JSON format
+- **YAML** (`.yaml`, `.yml`) - Human-readable YAML format
+- **Mixed directories** - Validate both formats together
+- **Format conversion** - Built-in conversion between formats
 
 ## 🏗️ Architecture
 
@@ -245,11 +254,16 @@ bun test --verbose
 
 #### **Recipe Management Scripts**
 ```bash
-# Validate recipes
+# Validate recipes (supports JSON and YAML)
 npm run validate              # Validate local/remote recipes
 npm run validate:remote       # Validate remote GitHub recipes  
 npm run validate:fix          # Validate with auto-fix enabled
 npm run validate:sample       # Generate sample recipe template
+
+# Format-specific validation examples
+node scripts/validate_recipes.js --file recipe.json
+node scripts/validate_recipes.js --file recipe.yaml
+node scripts/validate_recipes.js --dir ./recipes  # Mixed formats
 ```
 
 #### **Code Quality Standards**

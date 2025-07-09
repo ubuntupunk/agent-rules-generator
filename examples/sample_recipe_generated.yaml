@@ -1,0 +1,64 @@
+name: React TypeScript Web App
+description: A modern React application with TypeScript, featuring component-based architecture and modern development tools
+category: Web Application
+version: 1.0.0
+author: Your Name
+tags:
+  - react
+  - typescript
+  - web
+  - frontend
+techStack:
+  language: TypeScript
+  frontend: React
+  bundler: Vite
+  styling: Tailwind CSS
+  testing: Jest + React Testing Library
+  linting: ESLint + Prettier
+  deployment: Vercel
+windsurfRules: |-
+  # React TypeScript Project Rules
+
+  ## Component Guidelines
+  - Use functional components with hooks
+  - Implement proper TypeScript interfaces for props
+  - Follow the single responsibility principle
+  - Use descriptive component and prop names
+
+  ## Code Organization
+  - Group related components in feature folders
+  - Separate business logic into custom hooks
+  - Use absolute imports with path mapping
+  - Keep components under 200 lines
+
+  ## Performance
+  - Use React.memo for expensive components
+  - Implement proper dependency arrays in useEffect
+  - Lazy load routes and heavy components
+  - Optimize bundle size with code splitting
+
+  ## Testing
+  - Write unit tests for all custom hooks
+  - Test component behavior, not implementation
+  - Use data-testid for reliable element selection
+  - Maintain >80% test coverage
+agentRules: |-
+  # AI Assistant Rules for React TypeScript Project
+
+  ## Code Generation
+  - Always use TypeScript with proper type definitions
+  - Generate functional components with proper interfaces
+  - Include error boundaries for production components
+  - Use modern React patterns (hooks, context, suspense)
+
+  ## Best Practices
+  - Follow React and TypeScript best practices
+  - Implement proper error handling
+  - Use semantic HTML and accessibility features
+  - Include proper documentation and comments
+
+  ## File Structure
+  - Create components in feature-based folders
+  - Include index.ts files for clean imports
+  - Separate types into dedicated files
+  - Follow consistent naming conventions
