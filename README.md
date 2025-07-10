@@ -110,24 +110,55 @@ The Agent Rules Generator features a **modular architecture** designed for maint
 ```
 agent-rules-generator/
 ├── index.js                           # Main entry point
-├── agent_rules_cli.js                 # Core CLI orchestrator (424 lines)
-├── lib/                               # Specialized modules (13 total)
-│   ├── recipe_manager.js              # Recipe selection and application
-│   ├── windsurf_manager.js            # Windsurf integration and menu handling
-│   ├── tech_stack_collector.js        # Technology stack collection
-│   ├── project_configurator.js        # Project configuration collection
+├── agent_rules_cli.js                 # Core CLI orchestrator
+├── package.json                       # Project configuration
+├── DEPLOY.md                          # Deployment instructions
+├── CHANGELOG.md                       # Version history
+├── lib/                               # 13 specialized modules
 │   ├── cache_manager.js               # Cache management operations
-│   ├── repository_manager.js          # Repository settings and testing
-│   ├── generator_lib.js               # Template system and file generation
-│   ├── recipes_lib.js                 # Recipe system with GitHub integration
-│   ├── project_types.js               # Project type logic and questions
-│   ├── windsurf_scraper.js            # Windsurf recipe scraping and caching
 │   ├── cleanup_utils.js               # Cleanup and maintenance utilities
 │   ├── file_format_handler.js         # JSON/YAML format processing
-│   └── recipe_creator.js              # Recipe creation and validation
+│   ├── generator_lib.js               # Template system and file generation
+│   ├── project_configurator.js        # Project configuration collection
+│   ├── project_types.js               # Project type logic and questions
+│   ├── recipe_creator.js              # Recipe creation and validation
+│   ├── recipe_manager.js              # Recipe selection and application
+│   ├── recipes_lib.js                 # Recipe system with GitHub integration
+│   ├── repository_manager.js          # Repository settings and testing
+│   ├── tech_stack_collector.js        # Technology stack collection
+│   ├── windsurf_manager.js            # Windsurf integration and menu handling
+│   └── windsurf_scraper.js            # Windsurf recipe scraping and caching
+├── test/                              # 13 test files (181 tests total)
+│   ├── deployment.test.js             # Deployment workflow tests
+│   ├── file_format_handler.test.js    # Format handling tests
+│   ├── project_types.test.js          # Project type tests
+│   ├── recipe_creator.test.js         # Recipe creation tests
+│   ├── recipe_download.test.js        # Recipe download tests
+│   ├── recipe_validation.test.js      # Recipe validation tests
+│   ├── scraper_integrate_test.js      # Scraper integration tests
+│   ├── template_system.test.js        # Template system tests
+│   ├── windsurf_customization_flow.test.js # Windsurf flow tests
+│   └── [4 additional test files]      # Other specialized tests
+├── docs/                              # 13 documentation files
+│   ├── NOTIFICATIONS.md               # Discord/Telegram setup guide
+│   ├── testing.md                     # Testing strategy and procedures
+│   ├── deployment.md                  # Deployment and CI/CD processes
+│   └── [10 additional docs]           # Analysis and guides
+├── scripts/                           # 4 utility scripts
+│   ├── investigate_windsurf.js        # Windsurf investigation tools
+│   ├── scrape_windsurf_rules.js       # Windsurf scraping utilities
+│   ├── simple_windsurf_scraper.js     # Simple scraper implementation
+│   └── validate_recipes.js            # Recipe validation script
 ├── templates/                         # Template files for generation
-├── test/                              # Comprehensive test suites (181 tests)
-└── docs/                              # Documentation
+│   └── agent-template.md              # Base agent template
+├── examples/                          # Example files
+│   ├── sample_recipe.yaml             # Sample recipe format
+│   └── sample_recipe_generated.yaml   # Generated recipe example
+├── windsurf_recipes/                  # Cached Windsurf recipes
+│   └── recipes.json                   # Recipe cache file
+└── .github/                           # GitHub Actions workflows
+    └── workflows/
+        └── deploy.yml                 # Automated deployment pipeline
 ```
 
 ### **Key Design Principles**
@@ -141,7 +172,7 @@ agent-rules-generator/
 - ✅ **45% code reduction**: Main CLI reduced from 779 → 424 lines
 - ✅ **13 specialized modules** with clean separation of concerns
 - ✅ **100% functionality preserved** including the awesome startup screen
-- ✅ **All 108 tests passing** with comprehensive coverage
+- ✅ **All 181 tests passing** with comprehensive coverage
 - ✅ **Bug fixes completed**: Windsurf recipe customization flow fully functional
 
 ## 📋 Prerequisites
@@ -228,7 +259,7 @@ The codebase is organized into specialized modules for easy development and main
 
 #### **Testing Guidelines**
 ```bash
-# Run all tests (181 tests across 11 test suites)
+# Run all tests (181 tests across 13 test files)
 bun test
 
 # Run specific test suite
@@ -417,9 +448,17 @@ agent-rules-generator/
 
 ## 📚 Documentation
 
-- **[Testing Guide](docs/testing.md)** - Comprehensive testing information
-- **[Deployment Guide](docs/deployment.md)** - Deployment and CI/CD processes
+### **Core Documentation**
+- **[DEPLOY.md](DEPLOY.md)** - Quick deployment instructions
+- **[NOTIFICATIONS.md](docs/NOTIFICATIONS.md)** - Discord/Telegram setup guide
+- **[Testing Guide](docs/testing.md)** - Comprehensive testing information (181 tests)
+- **[Deployment Guide](docs/deployment.md)** - CI/CD pipeline documentation
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history and release notes
+
+### **Additional Resources** (13 docs total)
+- Analysis documents for project types, recipes, and templates
+- Deployment analysis and strategy guides
+- Technical notes and implementation details
 
 ## 🔧 Configuration
 
