@@ -111,7 +111,7 @@ The Agent Rules Generator features a **modular architecture** designed for maint
 agent-rules-generator/
 ├── index.js                           # Main entry point
 ├── agent_rules_cli.js                 # Core CLI orchestrator (424 lines)
-├── lib/                               # Specialized modules (11 total)
+├── lib/                               # Specialized modules (13 total)
 │   ├── recipe_manager.js              # Recipe selection and application
 │   ├── windsurf_manager.js            # Windsurf integration and menu handling
 │   ├── tech_stack_collector.js        # Technology stack collection
@@ -122,9 +122,11 @@ agent-rules-generator/
 │   ├── recipes_lib.js                 # Recipe system with GitHub integration
 │   ├── project_types.js               # Project type logic and questions
 │   ├── windsurf_scraper.js            # Windsurf recipe scraping and caching
-│   └── cleanup_utils.js               # Cleanup and maintenance utilities
+│   ├── cleanup_utils.js               # Cleanup and maintenance utilities
+│   ├── file_format_handler.js         # JSON/YAML format processing
+│   └── recipe_creator.js              # Recipe creation and validation
 ├── templates/                         # Template files for generation
-├── test/                              # Comprehensive test suites (99 tests)
+├── test/                              # Comprehensive test suites (181 tests)
 └── docs/                              # Documentation
 ```
 
@@ -137,7 +139,7 @@ agent-rules-generator/
 
 ### **Refactoring Achievement**
 - ✅ **45% code reduction**: Main CLI reduced from 779 → 424 lines
-- ✅ **11 specialized modules** with clean separation of concerns
+- ✅ **13 specialized modules** with clean separation of concerns
 - ✅ **100% functionality preserved** including the awesome startup screen
 - ✅ **All 108 tests passing** with comprehensive coverage
 - ✅ **Bug fixes completed**: Windsurf recipe customization flow fully functional
@@ -226,7 +228,7 @@ The codebase is organized into specialized modules for easy development and main
 
 #### **Testing Guidelines**
 ```bash
-# Run all tests (140+ tests across 9 test suites)
+# Run all tests (181 tests across 11 test suites)
 bun test
 
 # Run specific test suite

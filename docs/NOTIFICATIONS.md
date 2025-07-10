@@ -174,7 +174,7 @@ You can customize the notifications by modifying the workflow:
 
 - [Discord Webhooks Documentation](https://discord.com/developers/docs/resources/webhook)
 - [Telegram Bot API Documentation](https://core.telegram.org/bots/api)
-- [GitHub Actions Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+- [GitHub Actions Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secre
 
 ## 🎯 Benefits
 
@@ -186,4 +186,26 @@ With this notification system, you'll get:
 - ✅ **Zero maintenance** once configured
 - ✅ **Professional appearance** with formatted messages
 
-Your deployment workflow is now enterprise-grade with comprehensive notification coverage!
+
+ 🚀 Quick Setup Checklist:                                               │
+                                                                                                                      │
+                                               📱 Discord (2 minutes):                                                │
+│  1 ✅ Open Discord → Server Settings → Integrations → Webhooks                                                       │
+│  2 ✅ Create "Agent Rules Deployments" webhook                                                                       │
+│  3 ✅ Copy webhook URL                                                                                               │
+│  4 ✅ Add to GitHub as DISCORD_WEBHOOK secret                                                                        │
+│                                               📱 Telegram (3 minutes):                                               │
+│  1 ✅ Message @BotFather → /newbot → get token                                                                       │
+│  2 ✅ Message @userinfobot → get your chat ID                                                                        │
+│  3 ✅ Add TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to GitHub                                                          │
+│                                                   🔗 Direct Links:                                                   │
+│  • GitHub Secrets: https://github.com/ubuntupunk/agent-rules-generator/settings/secrets/actions                      │
+│  • BotFather: https://t.me/BotFather                                                                                 │
+│  • UserInfoBot: https://t.me/userinfobot                                                                             │
+│                                                   🧪 Test Command:                                                   │
+│  git tag v1.2.3-test                                                                                                 │
+│  git push origin v1.2.3-test                                                                                         │
+│                                                 🎯 What You'll Get:                                                  │
+│  • Discord: Rich green embed with package info and links                                                             │
+│  • Telegram: Instant mobile notification with install commands                                                       │
+│  • Both: Success/failure status with deployment logs                                                                 │

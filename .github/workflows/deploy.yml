@@ -32,30 +32,9 @@ jobs:
       - name: Run tests
         run: bun test
 
-      - name: Configure git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Get current version
         id: current_version
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-
-      - name: Bump version
-        id: version
-        run: |
-          # Use npm for version bumping (more reliable than bun for this)
-          npm version patch --no-git-tag-version
-          echo "new_version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-
-      - name: Commit version bump
-        run: |
-          git add package.json
-          git commit -m "chore: bump version to v$(node -p "require('./package.json').version")"
-
-      - name: Create and push tag
-        run: |
-          git tag v$(node -p "require('./package.json').version")
 
       - name: Publish package
         id: npm_publish
@@ -65,11 +44,6 @@ jobs:
         env:
           NODE_ENV: production
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Push changes and tags
-        run: |
-          git push origin main
-          git push origin --tags
 
       # Enhanced Notification System - Discord + Telegram
       - name: Discord Deployment Notification
