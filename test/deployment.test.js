@@ -204,9 +204,9 @@ describe('Deployment Flow Tests', () => {
       expect(workflowContent).toContain('registry.npmjs.org');
     });
 
-    test('should have version bump step', () => {
-      expect(workflowContent).toContain('Bump version');
-      expect(workflowContent).toContain('npm version patch');
+    test('should have version detection step', () => {
+      expect(workflowContent).toContain('Get current version');
+      expect(workflowContent).toContain('require(\'./package.json\').version');
     });
 
     test('should have publish step', () => {
