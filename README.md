@@ -10,7 +10,7 @@ That will help me maintain and improve the resources available for free
 
 # Agent Rules Generator
 
-An interactive CLI tool to generate `.agent.md` and `.windsurfrules` files for AI-assisted development with Cursor AI and Windsurf.
+An interactive CLI tool to generate `.agent.md` and `.windsurfrules` files for AI-assisted development with Cursor AI, Windsurf, and Gemini CLI.
 
 ## 🤝 Contributing
 
@@ -37,7 +37,7 @@ See our [Testing Guide](docs/testing.md) and [Deployment Guide](docs/deployment.
 ## 🚀 Features
 
 - **Interactive CLI**: Guided setup process for creating AI assistant configuration files
-- **Multiple AI Platforms**: Support for both Cursor AI (`.agent.md`) and Windsurf (`.windsurfrules`)
+- **Multiple AI Platforms**: Support for Cursor AI (`.agent.md`), Windsurf (`.windsurfrules`), and Gemini CLI configuration
 - **Project Type Inclusivity**: Supports 6 project types with tailored question flows
 - **Recipe System**: Pre-built templates for common project types and technology stacks
 - **Conditional Tech Stack**: Only asks relevant questions based on your project type
@@ -46,6 +46,21 @@ See our [Testing Guide](docs/testing.md) and [Deployment Guide](docs/deployment.
 - **Customizable Rules**: Define coding standards, workflow guidelines, and project-specific instructions
 - **Interactive Recipe Creator**: Create new recipes with guided prompts and auto-validation
 - **Recipe Validation**: Comprehensive validation system with auto-fix capabilities
+- **Gemini CLI Integration**: Configure Gemini CLI to use `.agent.md` as context file (local or global)
+
+## 🤖 Supported AI Platforms
+
+| Platform | Icon | File Type | Configuration |
+|----------|------|-----------|---------------|
+| **Cursor AI** | 🔵 | `.agent.md` | Comprehensive markdown rules file |
+| **Windsurf** | 🌊 | `.windsurfrules` | IDE-specific configuration file |
+| **Gemini CLI** | 💎 | `.gemini/settings.json` | Context file configuration |
+
+### Platform-Specific Features
+
+- **Cursor AI**: Full project context, coding standards, and AI assistant instructions
+- **Windsurf**: IDE integration with project-specific rules and guidelines  
+- **Gemini CLI**: Automatic configuration to use `.agent.md` as context file
 
 ## 🍳 Recipe Creation & Validation
 
@@ -325,8 +340,9 @@ node scripts/validate_recipes.js --dir ./recipes  # Mixed formats
 3. **Follow the interactive prompts** to configure your project
 
 4. **Choose your output format**:
-   - `.agent.md` for Cursor AI
-   - `.windsurfrules` for Windsurf
+   - `.agent.md` for Cursor AI 🔵
+   - `.windsurfrules` for Windsurf 🌊
+   - Configure Gemini CLI 💎
 
 The tool will create a comprehensive configuration file tailored to your project type and technology stack.
 
@@ -510,6 +526,13 @@ A configuration file for Windsurf AI development environment with:
 - Technology guidelines
 - Code generation preferences
 - Quality standards
+
+### `.gemini/settings.json` (Gemini CLI)
+Configuration for Gemini CLI to use `.agent.md` as context file:
+- Local project configuration (`.gemini/settings.json`)
+- Global user configuration (`~/.gemini/settings.json`)
+- Automatic context file detection
+- Seamless integration with existing `.agent.md` files
 
 ## 🎯 Benefits
 

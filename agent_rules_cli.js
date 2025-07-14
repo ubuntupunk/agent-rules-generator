@@ -14,6 +14,7 @@ const figlet = require('figlet');
 // Import all the specialized modules with correct destructuring
 const { RecipeManager } = require('./lib/recipe_manager');
 const WindsurfManager = require('./lib/windsurf_manager');
+const GeminiManager = require('./lib/gemini_manager');
 const { TechStackCollector } = require('./lib/tech_stack_collector');
 const { ProjectConfigurator } = require('./lib/project_configurator');
 const { generateAgentFile } = require('./lib/generator_lib');
@@ -36,6 +37,7 @@ class AgentRulesGenerator {
     // Initialize managers with proper instantiation
     this.recipeManager = new RecipeManager(this.config);
     this.windsurfManager = new WindsurfManager();
+    this.geminiManager = new GeminiManager();
     this.techStackCollector = new TechStackCollector(this.config);
     this.projectConfigurator = new ProjectConfigurator(this.config);
     this.cacheManager = new CacheManager();
@@ -91,6 +93,7 @@ class AgentRulesGenerator {
             { name: 'Generate agent rules file', value: 'generate' },
             { name: 'Manage recipes', value: 'recipes' },
             { name: 'Create new recipe', value: 'create-recipe' },
+            { name: 'Configure Gemini CLI', value: 'gemini' },
             { name: 'Configure remote repository', value: 'configure' },
             { name: 'Exit', value: 'exit' }
           ]
@@ -106,6 +109,9 @@ class AgentRulesGenerator {
           break;
         case 'create-recipe':
           await this.createNewRecipe();
+          break;
+        case 'gemini':
+          await this.geminiManager.setupGeminiConfig();
           break;
         case 'configure':
           await this.configureRemoteRepository();
@@ -207,6 +213,9 @@ class AgentRulesGenerator {
       case 'list-recipes':
         await this.listRecipesCommand();
         break;
+      case 'configure-gemini':
+        await this.geminiManager.setupGeminiConfig();
+        break;
       case 'help':
         this.showHelp();
         break;
@@ -279,6 +288,7 @@ class AgentRulesGenerator {
     console.log('  clear-cache      Clear local recipe cache');
     console.log('  cache-info       Show cache information');
     console.log('  list-recipes     List all available recipes');
+    console.log('  configure-gemini Configure Gemini CLI to use .agent.md');
     console.log('  help             Show this help message\n');
   }
 

@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2024-12-19
+
+### Added
+- **Gemini CLI Integration**: Full support for configuring Gemini CLI to use `.agent.md` as context file
+- **Multi-Platform Support**: Now supports Cursor AI 🔵, Windsurf 🌊, and Gemini CLI 💎
+- **Interactive Gemini Configuration**: Local and global configuration options with status checking
+- **Editor Integration**: Built-in editor support for manual configuration file editing
+- **Comprehensive Testing**: Added 9 new tests for Gemini Manager functionality
+- **Enhanced CLI Commands**: New `configure-gemini` command for CLI usage
+- **Platform Icons**: Added visual indicators for supported AI platforms in documentation
+
+### Enhanced
+- **README Documentation**: Updated with supported platforms table and platform-specific features
+- **Help System**: Extended help text to include Gemini configuration options
+- **Configuration Management**: Automatic detection and validation of existing Gemini settings
+- **Error Handling**: Graceful handling of file system errors and invalid configurations
+
+### Technical
+- **New Module**: `lib/gemini_manager.js` for Gemini CLI configuration management
+- **Test Coverage**: Added `test/gemini_manager.test.js` with comprehensive test suite
+- **Cross-Platform**: Support for Windows, macOS, and Linux editor detection
+- **File System Safety**: Robust directory creation and configuration file management
+
 ## [1.2.2] - 2024-12-07
 
 ### Fixed
